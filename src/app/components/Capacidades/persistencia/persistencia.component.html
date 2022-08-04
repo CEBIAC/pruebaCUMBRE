@@ -5,7 +5,8 @@
         <ion-col class="opcionesGridItems" size="12">
           <ion-row class="enunciado">
             <ion-col size="12">
-              <p id="copyPersistencia"> Si la ruta que ideé para cumplir mis objetivos falla, se me dificulta crear nuevas alternativas.</p>
+              <p id="copyPersistencia"> Si la ruta que ideé para cumplir mis objetivos falla, se me dificulta crear
+                nuevas alternativas.</p>
             </ion-col>
           </ion-row>
           <ion-row class="optionNumber">
@@ -20,8 +21,8 @@
         </ion-col>
         <ion-col class="progreso" size="12">
           <ion-row>
-            <ion-col class="{{progr}}" *ngFor="let progr of progreso" size="0.6">
-            </ion-col>
+            <ion-progress-bar value="{{progress}}" buffer="0.18" color="dark">
+            </ion-progress-bar>
             <button class="btnContinuar" (click)="continuar()"></button>
           </ion-row>
         </ion-col>

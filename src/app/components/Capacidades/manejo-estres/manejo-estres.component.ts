@@ -10,10 +10,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 export class ManejoEstresComponent implements OnInit {
 
   copys = [
-    '.',
-    '',
-    '',
-    '',
+    'En los momentos cuando discuto con mis amigos, prefiero respirar y retomar la conversación cuando esté calmado.',
+    'No logro solucionar problemas, ni trabajar cuando alguien está esperando los resultados.',
+    'Reconozco cuando una situación es tensionante y puedo controlar mis reacciones para no dejarme afectar.',
+    'Aunque trato de controlar mi estrés, no he podido encontrar técnicas de mantener la calma.',
   ];
 
   opciones = [
@@ -26,7 +26,7 @@ export class ManejoEstresComponent implements OnInit {
 
   index = 1;
   rptasEstres = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.4212;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
   seleccionar(event, opc) {
@@ -40,15 +40,13 @@ export class ManejoEstresComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasEstres[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasEstres);
+        //console.log(this.rptasEstres);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -69,16 +67,13 @@ export class ManejoEstresComponent implements OnInit {
               document.getElementById('copyEstres');
             this.index++;
             copyEstres.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

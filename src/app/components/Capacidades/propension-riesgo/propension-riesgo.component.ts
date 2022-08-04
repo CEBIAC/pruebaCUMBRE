@@ -25,7 +25,7 @@ export class PropensionRiesgoComponent implements OnInit {
 
   index = 1;
   rptasRiesgo = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.187;
 
   constructor(private app: AppComponent) {}
 
@@ -40,15 +40,13 @@ export class PropensionRiesgoComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasRiesgo[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasRiesgo);
+        //console.log(this.rptasRiesgo);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -69,16 +67,13 @@ export class PropensionRiesgoComponent implements OnInit {
               document.getElementById('copyRiesgo');
             this.index++;
             copyRiesgo.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

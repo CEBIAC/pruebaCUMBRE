@@ -9,7 +9,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 })
 export class TrabajoEquipoComponent implements OnInit {
 
-  copys = ['.', '', '', ''];
+  copys = ['En un equipo es importante que se aporten ideas distintas y crear algo nuevo',
+    'La gran ventaja de los equipos es el apoyo mutuo',
+    'Prefiero tener logros colectivos o como líder de un equipo, que logros netamente individuales',
+    'Siempre puedo aprender de mis compañeros'];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -21,8 +24,8 @@ export class TrabajoEquipoComponent implements OnInit {
 
   index = 1;
   rptasEquipo = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  progress = 0.9126;
+  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
   seleccionar(event, opc) {
     this.opciones.forEach((element, index) => {
@@ -37,15 +40,13 @@ export class TrabajoEquipoComponent implements OnInit {
         this.rptasEquipo[this.index - 1] = parseFloat(
           event.srcElement.value
         );
-        console.log(this.rptasEquipo);
+        //console.log(this.rptasEquipo);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -66,16 +67,13 @@ export class TrabajoEquipoComponent implements OnInit {
               document.getElementById('copyEquipo');
             this.index++;
             copyEquipo.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

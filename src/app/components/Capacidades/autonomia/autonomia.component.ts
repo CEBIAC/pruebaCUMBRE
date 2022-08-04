@@ -25,7 +25,7 @@ export class AutonomiaComponent implements OnInit {
 
   index = 1;
   rptasAutonomia = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.234;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
   seleccionar(event, opc) {
@@ -39,15 +39,13 @@ export class AutonomiaComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasAutonomia[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasAutonomia);
+        //console.log(this.rptasAutonomia);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -68,15 +66,12 @@ export class AutonomiaComponent implements OnInit {
               document.getElementById('copyAutonomia');
             this.index++;
             copyAutonomia.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 }

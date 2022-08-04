@@ -9,8 +9,11 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 })
 export class NegociacionComponent implements OnInit {
 
-  
-  copys = ['.', '', '', ''];
+
+  copys = ['Propongo acuerdos entre varios puntos de vista buscando que todos logremos obtener ganancias.',
+    'Me gusta escuchar y analizar antes que hablar.',
+    'Suelo convencer a los demás para que sigan mis ideas.',
+    'Cuando estoy en medio de una discusión, me esmero por escuchar las dos partes.'];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -22,8 +25,8 @@ export class NegociacionComponent implements OnInit {
 
   index = 1;
   rptasNegociacion = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  progress = 0.9594;
+  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
   seleccionar(event, opc) {
     this.opciones.forEach((element, index) => {
@@ -38,15 +41,13 @@ export class NegociacionComponent implements OnInit {
         this.rptasNegociacion[this.index - 1] = parseFloat(
           event.srcElement.value
         );
-        console.log(this.rptasNegociacion);
+        //console.log(this.rptasNegociacion);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -67,16 +68,13 @@ export class NegociacionComponent implements OnInit {
               document.getElementById('copyNegociacion');
             this.index++;
             copyNegociacion.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

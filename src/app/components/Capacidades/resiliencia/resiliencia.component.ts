@@ -10,10 +10,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 export class ResilienciaComponent implements OnInit {
 
   copys = [
-    '.',
-    '',
-    '',
-    '',
+    'Veo las situaciones difíciles como un reto para avanzar.',
+    'Pienso que fracasar siempre es parte del proceso.',
+    'Soy de las que reflexiona de los acontecimientos negativos que me ocurren, para sacar conclusiones y aprender de ellas.',
+    'Busco entender lo positivo y negativo de cada decisión para mejorar los resultados de mis acciones.',
   ];
 
   opciones = [
@@ -26,7 +26,7 @@ export class ResilienciaComponent implements OnInit {
 
   index = 1;
   rptasResiliencia = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.468;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
   seleccionar(event, opc) {
@@ -40,15 +40,13 @@ export class ResilienciaComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasResiliencia[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasResiliencia);
+        //console.log(this.rptasResiliencia);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -69,16 +67,13 @@ export class ResilienciaComponent implements OnInit {
               document.getElementById('copyResiliencia');
             this.index++;
             copyResiliencia.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

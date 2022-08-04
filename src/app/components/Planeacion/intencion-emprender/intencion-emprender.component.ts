@@ -8,8 +8,11 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./intencion-emprender.component.scss'],
 })
 export class IntencionEmprenderComponent implements OnInit {
-  
-  copys = ['.', '', '', ''];
+
+  copys = ['Cuando pienso en generar ingresos, me atrae más hacerlo a través de un proyecto de emprendimiento propio que por medio de un mejor empleo.',
+    'Sólo espero el momento en que pueda iniciar mi emprendimiento, para ser independiente.',
+    'Constantemente evalúo mi entorno con el fin de encontrar una oportunidad para desarrollar un proyecto de emprendimiento.',
+    'Cuando escucho historias de emprendedores, sólo me imagino el momento en el que yo esté contando la mía.'];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -21,8 +24,8 @@ export class IntencionEmprenderComponent implements OnInit {
 
   index = 1;
   rptasEmprender = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  progress = 0.6084;
+  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
   seleccionar(event, opc) {
     this.opciones.forEach((element, index) => {
@@ -37,15 +40,13 @@ export class IntencionEmprenderComponent implements OnInit {
         this.rptasEmprender[this.index - 1] = parseFloat(
           event.srcElement.value
         );
-        console.log(this.rptasEmprender);
+        //console.log(this.rptasEmprender);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -66,15 +67,12 @@ export class IntencionEmprenderComponent implements OnInit {
               document.getElementById('copyEmprender');
             this.index++;
             copyEmprender.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 }

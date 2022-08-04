@@ -21,8 +21,8 @@
         </ion-col>
         <ion-col class="progreso" size="12">
           <ion-row>
-            <ion-col class="{{progr}}" *ngFor="let progr of progreso" size="0.6">
-            </ion-col>
+            <ion-progress-bar value="{{progress}}" buffer="0.09" color="dark">
+            </ion-progress-bar>
             <button class="btnContinuar" (click)="continuar()"></button>
           </ion-row>
         </ion-col>

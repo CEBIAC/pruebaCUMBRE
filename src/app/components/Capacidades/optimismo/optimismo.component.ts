@@ -24,7 +24,7 @@ export class OptimismoComponent implements OnInit {
 
   index = 1;
   rptasAuto = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.0963;
 
   constructor(private app: AppComponent) {}
 
@@ -39,15 +39,13 @@ export class OptimismoComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasAuto[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasAuto);
+       //console.log(this.rptasAuto);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -68,15 +66,12 @@ export class OptimismoComponent implements OnInit {
               document.getElementById('copyOptimismo');
             this.index++;
             copyOptimismo.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 }

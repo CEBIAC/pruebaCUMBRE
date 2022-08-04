@@ -11,10 +11,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 
 export class IdentificacionOportunidadesComponent implements OnInit {
   copys = [
-    '.',
-    '',
-    '',
-    '',
+    'Se me dificulta identificar oportunidades de negocio en el contexto donde me desenvuelvo.',
+    'Me cuesta identificar cuál es una buena oportunidad de negocio.',
+    'Estoy atenta/o a las dinámicas de distintos sectores de la ciudad para distinguir oportunidades de emprendimiento.',
+    'Reconozco las desventajas de la competencia para elaborar mis propias ventajas competitivas.',
   ];
 
   opciones = [
@@ -27,7 +27,7 @@ export class IdentificacionOportunidadesComponent implements OnInit {
 
   index = 1;
   rptasOportunidades = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.329;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
   seleccionar(event, opc) {
@@ -41,15 +41,13 @@ export class IdentificacionOportunidadesComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasOportunidades[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasOportunidades);
+        //console.log(this.rptasOportunidades);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -70,16 +68,13 @@ export class IdentificacionOportunidadesComponent implements OnInit {
               document.getElementById('copyOportunidades');
             this.index++;
             copyOportunidades.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

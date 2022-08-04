@@ -9,7 +9,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 })
 export class EficaciaComponent implements OnInit {
 
-  copys = ['.', '', '', ''];
+  copys = ['Resultados de alta calidad son preferibles a resultados numerosos.',
+    'Presto atención a cada detalle de los procesos que llevo.',
+    'Cumplo mis objetivos con resultados sobresalientes.',
+    'Si hay escasos recursos es mejor lograr pocos productos perfectos o varios de poca calidad.'];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -21,8 +24,8 @@ export class EficaciaComponent implements OnInit {
 
   index = 1;
   rptasEficacia = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  progress = 0.819;
+  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
   seleccionar(event, opc) {
     this.opciones.forEach((element, index) => {
@@ -37,15 +40,13 @@ export class EficaciaComponent implements OnInit {
         this.rptasEficacia[this.index - 1] = parseFloat(
           event.srcElement.value
         );
-        console.log(this.rptasEficacia);
+        //console.log(this.rptasEficacia);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -66,17 +67,14 @@ export class EficaciaComponent implements OnInit {
               document.getElementById('copyEficacia');
             this.index++;
             copyEficacia.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 
 }

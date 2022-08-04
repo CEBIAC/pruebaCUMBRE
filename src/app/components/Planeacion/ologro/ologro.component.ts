@@ -10,10 +10,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 export class OlogroComponent implements OnInit {
   
   copys = [
-    '.',
-    '',
-    '',
-    '',
+    'Me motiva lo que hago a diario porque cada actividad me acerca a cumplir mis objetivos.',
+    'Tengo claras mis metas a pesar de los desafíos que se me presenten en mi proyecto.',
+    'Puedo superar todos los desafios que se me presenten, hasta alcanzar los objetivos que me propongo.',
+    'Me siento cómodo asumiendo retos nuevos en pro de cumplir con mis objetivos.',
   ];
 
   opciones = [
@@ -26,7 +26,7 @@ export class OlogroComponent implements OnInit {
 
   index = 1;
   rptasLogro = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.5616;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
   seleccionar(event, opc) {
@@ -40,15 +40,13 @@ export class OlogroComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasLogro[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasLogro);
+        //console.log(this.rptasLogro);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -69,15 +67,12 @@ export class OlogroComponent implements OnInit {
               document.getElementById('copyLogro');
             this.index++;
             copyLogro.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 }

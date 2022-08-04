@@ -9,7 +9,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 })
 export class RelacionesComponent implements OnInit {
 
-  copys = ['.', '', '', ''];
+  copys = ['Siento que me privo de oportunidades porque soy muy tímido.',
+    'Entre más enriquezca mi red de contactos con alianzas estratégicas, mayor será el potencial de sacar adelante mi proyecto.',
+    'Recurro a información de prensa e internet para encontrar y aprovechar espacios donde pueda encontrar aliados, clientes o colaboradores.',
+    'Se me dificulta relacionarme con personas que no conozco, prefiero establecer relaciones empresariales con conocidos.'];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -21,8 +24,8 @@ export class RelacionesComponent implements OnInit {
 
   index = 1;
   rptasRelaciones = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  progress = 0.8658;
+  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
   seleccionar(event, opc) {
     this.opciones.forEach((element, index) => {
@@ -37,15 +40,13 @@ export class RelacionesComponent implements OnInit {
         this.rptasRelaciones[this.index - 1] = parseFloat(
           event.srcElement.value
         );
-        console.log(this.rptasRelaciones);
+        //console.log(this.rptasRelaciones);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -66,16 +67,13 @@ export class RelacionesComponent implements OnInit {
               document.getElementById('copyRelaciones');
             this.index++;
             copyRelaciones.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

@@ -25,7 +25,7 @@ export class CreatividadComponent implements OnInit {
 
   index = 1;
   rptasCreatividad = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.282;
 
   constructor(private app: AppComponent) {}
 
@@ -40,15 +40,13 @@ export class CreatividadComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasCreatividad[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasCreatividad);
+        //console.log(this.rptasCreatividad);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -69,16 +67,13 @@ export class CreatividadComponent implements OnInit {
               document.getElementById('copyCreatividad');
             this.index++;
             copyCreatividad.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 }

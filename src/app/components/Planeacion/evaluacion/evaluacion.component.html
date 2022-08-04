@@ -5,7 +5,8 @@
                 <ion-col class="opcionesGridItems" size="12">
                     <ion-row class="enunciado">
                         <ion-col size="12">
-                            <p id="copyEvaluacion">aqui.</p>
+                            <p id="copyEvaluacion">En el desarrollo de un proyecto, me gusta implementar estrategias
+                                para verificar el cumplimiento de los planes y la evaluación de resultados.</p>
                         </ion-col>
                     </ion-row>
                     <ion-row class="optionNumber">
@@ -21,8 +22,8 @@
                 </ion-col>
                 <ion-col class="progreso" size="12">
                     <ion-row>
-                        <ion-col class="{{progr}}" *ngFor="let progr of progreso" size="0.6">
-                        </ion-col>
+                        <ion-progress-bar value="{{progress}}" buffer="0.7722" color="dark">
+                        </ion-progress-bar>
                         <button class="btnContinuar" (click)="continuar()"></button>
                     </ion-row>
                 </ion-col>

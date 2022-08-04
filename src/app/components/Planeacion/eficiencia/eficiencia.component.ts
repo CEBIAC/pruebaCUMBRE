@@ -9,7 +9,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 })
 export class EficienciaComponent implements OnInit {
 
-  copys = ['.', '', '', ''];
+  copys = ['Me gusta aplicar los mejores medios posibles con el fin de ahorrar tiempo en la obtención resultados.',
+    'En todo proceso de trabajo prefiero asegurarme que estoy invirtiendo la mínima cantidad de tiempo y recursos.',
+    'Los resultados de calidad son importantes siempre y cuando se reduzca en lo posible los recursos y tiempos de entrega.',
+    'La calidad minuciosa de los resultados pasa a un segundo plano cuando éstos se pueden alcanzar rápida y económicamente.'];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -21,8 +24,8 @@ export class EficienciaComponent implements OnInit {
 
   index = 1;
   rptasEficiencia = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  progress = 0.7722;
+  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
   seleccionar(event, opc) {
     this.opciones.forEach((element, index) => {
@@ -37,15 +40,13 @@ export class EficienciaComponent implements OnInit {
         this.rptasEficiencia[this.index - 1] = parseFloat(
           event.srcElement.value
         );
-        console.log(this.rptasEficiencia);
+        //console.log(this.rptasEficiencia);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -66,17 +67,14 @@ export class EficienciaComponent implements OnInit {
               document.getElementById('copyEficiencia');
             this.index++;
             copyEficiencia.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 
 
 }

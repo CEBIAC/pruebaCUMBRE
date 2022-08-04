@@ -25,7 +25,8 @@ export class LocusControlComponent implements OnInit {
 
   index = 1;
   rptasControl = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.0468;
+
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
   seleccionar(event, opc) {
@@ -39,15 +40,13 @@ export class LocusControlComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasControl[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasControl);
+        //console.log(this.rptasControl);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -68,8 +67,7 @@ export class LocusControlComponent implements OnInit {
               document.getElementById('copyControl');
             this.index++;
             copyControl.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
@@ -77,6 +75,5 @@ export class LocusControlComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.progreso[this.index] = 'actual';
   }
 }

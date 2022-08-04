@@ -10,10 +10,10 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
 export class FlexibilidadComponent implements OnInit {
 
   copys = [
-    '.',
-    '',
-    '',
-    '',
+    'Puedo amoldarme casi a cualquier situación que se presente sin problema.',
+    'Prefiero seguir reglas concretas y bien establecidas que asumir procesos inciertos y desestructurados.',
+    'Incorporo con facilidad distintas estrategias e ideas a mi emprendimiento aunque en principio no esté familiarizado con ellas.',
+    'Me adapto fácilmente y sin mayor resistencia ante la incertidumbre y entornos cambiantes.',
   ];
 
   opciones = [
@@ -26,7 +26,7 @@ export class FlexibilidadComponent implements OnInit {
 
   index = 1;
   rptasFlexibilidad = Array();
-  progreso = Array(18).fill('virtual', 0, 18);
+  progress = 0.3744;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
   seleccionar(event, opc) {
@@ -40,15 +40,13 @@ export class FlexibilidadComponent implements OnInit {
         );
         select.className = 'actived';
         this.rptasFlexibilidad[this.index - 1] = parseFloat(event.srcElement.value);
-        console.log(this.rptasFlexibilidad);
+        //console.log(this.rptasFlexibilidad);
       }
     });
   }
 
   iniciar() {
     this.index++;
-    this.progreso[this.index - 1] = 'virtual';
-    this.progreso[this.index] = 'actual';
   }
 
   continuar() {
@@ -69,15 +67,12 @@ export class FlexibilidadComponent implements OnInit {
               document.getElementById('copyFlexibilidad');
             this.index++;
             copyFlexibilidad.textContent = this.copys[this.index - 1];
-            this.progreso[this.index - 1] = 'virtual';
-            this.progreso[this.index] = 'actual';
+            this.progress = this.progress + 0.0117;
           }
         });
       }
     }
   }
 
-  ngOnInit() {
-    this.progreso[this.index] = 'actual';
-  }
+  ngOnInit() {}
 }
