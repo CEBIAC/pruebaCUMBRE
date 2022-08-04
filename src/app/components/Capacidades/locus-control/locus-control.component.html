@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-grid>
+    <div class="container">
+      <ion-row *ngIf="index >= 0" class="rowItems">
+        <ion-col class="opcionesGridItems" size="12">
+          <ion-row class="enunciado">
+            <ion-col size="12">
+              <p id="copyControl"> Cuando fracasa alguna actividad de un proyecto en el que avanzo, me cuesta
+                reconocer los factores personales que influyeron en ese resultado.</p>
+            </ion-col>
+          </ion-row>
+          <ion-row class="optionNumber">
+            <ion-col class="option" *ngFor="let opt of opciones" size="2">
+              <button id="{{opt[2]}}" value="{{opt[1]}}" class="ion-text-wrap " (click)="seleccionar($event,opt[1])">
+                {{opt[1]}}
+              </button>
+              <p class="paragraph" class="ion-text-wrap">
+                {{opt[0]}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col class="progreso" size="12">
+          <ion-row>
+            <ion-col class="{{progr}}" *ngFor="let progr of progreso" size="0.6">
+            </ion-col>
+            <button class="btnContinuar" (click)="continuar()"></button>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

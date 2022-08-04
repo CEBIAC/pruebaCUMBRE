@@ -1,0 +1,66 @@
+ion-content {
+    --background: url("../../../assets/terms/FondoT.png") no-repeat center/cover fixed;
+    background-color: #12AC88;
+    z-index: 0;
+}
+
+
+.personajes {
+    width: 75%;
+    height: 100%;
+}
+
+#personaje {
+    text-align: center;
+}
+
+#colParrafo {
+    margin-top: 10%;
+    text-align: end;
+
+    #parrafoTerms {
+        padding-bottom: 10%;
+        text-align: start;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+p,
+a {
+    font-family: 'Quicksand', sans-serif;
+    color: #FFFF;
+    font-size: 3vh;
+    text-decoration: none;
+}
+
+#btnContinuar {
+    height: 100%;
+}
+
+ion-button {
+    height: 6vh;
+}
+
+ion-grid {
+    margin-top: 0% !important;
+    padding-top: 0% !important;
+}
+
+#logo {
+    text-align: center;
+    padding: 1.5%;
+
+    #pPrincipal {
+        font-family: 'Quicksand', sans-serif;
+        color: #FFFF;
+        font-size: 4vh;
+        text-decoration: none;
+    }
+}

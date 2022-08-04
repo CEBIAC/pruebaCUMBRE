@@ -1,0 +1,36 @@
+.titulo-preg {
+    background-color: #12AC88;
+    padding: 2%;
+    text-align: center;
+
+    h2 {
+        font-family: 'Quicksand', sans-serif;
+        color: #FFFF;
+        font-size: 4vh;
+        font-weight: 500;
+        text-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.texto-preg {
+    padding-left: 8%;
+    padding-right: 8%;
+
+    p {
+        font-family: 'Quicksand', sans-serif;
+        color: #10182a;
+        font-size: 2vh;
+        font-weight: 500;
+    }
+}
+
+.checkbox {
+    padding-bottom: 4%;
+    padding-top: 2%;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    color: #12AC88;
+    font-size: 2vh;
+    font-weight: 600;
+
+}

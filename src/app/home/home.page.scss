@@ -1,0 +1,40 @@
+ion-content {
+  --background: url("../../assets/home/Fondo.png") no-repeat center/cover fixed;
+  background-color: #18243E;
+  z-index: 0;
+}
+
+
+.personajes {
+  height: 30vh;
+}
+
+ion-col {
+  text-align: center;
+}
+
+p {
+  font-family: 'Quicksand', sans-serif;
+  color: #FFFF;
+  font-size: 2.2vh;
+}
+
+#btnEmpezar,
+#btnResultado {
+  height: 100%;
+}
+
+ion-button {
+  height: 6vh;
+}
+
+ion-grid {
+  margin-top: 0% !important;
+  padding-top: 0% !important;
+}
+
+#logo {
+  margin-top: 0% !important;
+  padding-top: 0% !important;
+  margin-bottom: 3%;
+}

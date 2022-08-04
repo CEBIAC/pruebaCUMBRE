@@ -1,0 +1,26 @@
+ion-content {
+    --background: url("../../../assets/terms/FondoT.png") no-repeat center/cover fixed;
+    background-color: #12AC88;
+    z-index: 0;
+}
+ion-grid{
+    padding-top: 5%;
+    ion-col{
+        padding-top: 2%;
+        text-align: center;
+        #pPrincipal{
+            font-family: 'Quicksand', sans-serif;
+            color: #FFFF;
+            font-size: 4vh;
+            text-decoration: none;
+        }
+    }
+}
+
+
+ion-button {
+    height: 10vh;
+    img{
+        height: 100%;
+    }
+}

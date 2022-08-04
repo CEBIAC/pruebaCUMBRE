@@ -1,0 +1,52 @@
+<ion-content>
+  <div *ngIf="dataType == 'TYC'">
+    <form  class="TyC"  >
+      <div class="titulo-preg">
+        <h2>Términos y condiciones</h2>
+      </div>
+      <div class="texto-preg">
+        <p>El presente documento establece los Términos y Condiciones del consentimiento
+          informado para la aplicación de la prueba CUNbre de Emprendimiento, por lo que el
+          usuario que realiza la aplicación del instrumento debe realizarlo de acuerdo con los
+          acuerdos aquí señalados. Al acceder o utilizar la prueba CUNbre, el usuario acepta
+          plenamente y sin reservas el acuerdo con los términos del consentimiento informado.
+          Estos Términos consisten en un acuerdo de confidencialidad y colaboración entre el
+          usuario y el Centro de Bits y Átomos de la CUN, CEBIAC, que abarca el acceso, uso,
+          obtención de resultados y recolección de datos para fines investigativos. En caso de
+          no estar de acuerdo con estos Términos y Condiciones es necesario abstenerse de
+          utilizar la herramienta. Al hacer uso de esta prueba, usted confirma que comprende y
+          está de acuerdo con:
+          1. Confidencialidad: La información recogida por la herramienta se encuentra
+          amparada por el código ético y deontológico del Colegio Colombiano de Psicólogos, el
+          artículo 3 de la ley 1098 de 2006 y lo señalado en el artículo 2°, numeral 5° de la ley
+          1090 de 2006.
+          2. Respeto a la propiedad intelectual: El Centro de Bits y Átomos de la CUN es
+          propietario del derecho de autor de la prueba CUNbre de Emprendimiento. Esta
+          premisa no se aplica a la información considerada como de dominio público o utilidad
+          pública. El contenido al que puede acceder mediante el uso de la herramienta es
+          confidencial. Su uso, edición y distribución está autorizado únicamente a
+          colaboradores de la CUN o del Centro de Bits y Átomos de la CUN, CEBIAC. El
+          contenido no deberá ser usado para propósitos distintos a los mencionados, alterado o
+          copiado para su reproducción no autorizada, lo cual está expresamente prohibido.
+          Cualquier violación
+          3. Restricciones de uso: El uso de la Prueba CUNbre está permitido solamente para
+          personas mayores de (18) años, o menores entre 13 y 17 años con el debido
+          consentimiento y autorización expresa de sus acudientes, padres o tutores remitidos
+          previamente al correo electrónico de la Unidad de Emprendimiento de la CUN
+          cunbre@cun.edu.co.
+        </p>
+      </div>
+      <div class="checkbox">
+        <label class="label"> Acepto los términos y condiciones  </label>
+        <ion-checkbox [(ngModel)]="usuario.terms"  name="terms" id="check" color="favorite2"></ion-checkbox>
+        
+        <!--<label class="label"> Acepto los términos y condiciones </label>
+        <input class="input" type="checkbox" name="TyC" value="accept" required>-->
+      </div>
+      <ion-button class="btnCheck" (click)="dismissModal()" expand="block" color="favorite" [disabled]="!usuario.terms">
+        Continuar
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

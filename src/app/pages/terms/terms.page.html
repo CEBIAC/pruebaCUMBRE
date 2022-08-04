@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <!--Row con parrafo principal-->
+    <ion-row>
+      <ion-col id="logo">
+        <p id="pPrincipal">
+          <b>Recuerda, no hay respuestas correctas o incorrectas, sólo
+            <br> debes responder con la mayor sinceridad posible.</b>
+        </p>
+      </ion-col>
+    </ion-row>
+    <!--Row con personaje parrafo y botón-->
+    <ion-row>
+      <ion-col size-lg="2" size-sm="1">
+      </ion-col>
+      <!--Col con personaje parrafo y botón-->
+      <ion-col size-lg="8" size-sm="10">
+        <!--Row con personaje parrafo y botón-->
+        <ion-row>
+          <!--Col parrafo y botón-->
+          <ion-col id="colParrafo" size-sm="10" size-lg="7">
+            <p id="parrafoTerms">
+              *Al continuar a la siguiente sección del formulario,
+              aceptas que has leído los <a (click)="presentModal('TYC')"><b>términos del
+                  consentimiento</b></a> para obtener los resultados del test.
+              <br><br>
+              <b>**No se guardarán las respuestas</b> hasta que no
+              finalices el test por completo.
+            </p>
+            <ion-button id="btnTerms" (click)="goNext()" fill="clear">
+              <img id="btnContinuar" src="../../../assets/terms/btnContinuar.png" alt="">
+            </ion-button>
+          </ion-col>
+          <!--Col con personaje-->
+          <ion-col id="personaje" size-sm="2" size-lg="5">
+            <img class="personajes img-fluid" src="../../../assets/terms/personaje.png" alt="">
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size-lg="2" size-sm="1">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

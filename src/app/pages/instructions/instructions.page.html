@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-grid>
+    <!--Row con parrafo principal-->
+    <ion-row>
+      <ion-col>
+        <p id="pPrincipal">
+          <b>A continuación encontrarás diferentes afirmaciones. Queremos que
+            <br> nos cuentes en una escala de 1 a 5 qué tan identificado te sientes con ellas.</b>
+        </p>
+      </ion-col>
+    </ion-row>
+    <!--Row con imagen de instrucciones-->
+    <ion-row>
+      <ion-col size="1">
+      </ion-col>
+      <ion-col size="10">
+        <img id="instructions" src="../../../assets/instructions/instructions.png" alt="">
+      </ion-col>
+      <ion-col size="1">
+      </ion-col>
+    </ion-row>
+    <!--Row con botón-->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="goNext()" fill="clear">
+          <img id="btnSiguiente" src="../../../assets/instructions/btnSiguienteO.png" alt="">
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
