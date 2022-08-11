@@ -1,9 +1,63 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>results</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content id="inicio" *ngIf="sections==1">
+  <p id="results">RESULTADOS</p>
+  <ion-grid>
+    <div class="container">
+      <ion-row class="rowItems">
+        <ion-col class="opcionesGridItems" size="12">
+          <ion-row class="enunciado">
+            <ion-col size="12">
+              <p>A continuación encontrarás los resultados sobre tu <b>potencial de
+                  <br> emprendimiento.</b> Nuestra prueba evalua 21 dimensiones distribuidas en 3 áreas:
+                <br> Capacidades personales (12), habildades de planeación (6) y Habilidades
+                sociales (3).
+                <br><br>Así, el reporte de resultados que encontrarás se componene en 5 partes:
+                <b><br><br>A. Puntaje global de la prueba
+                  <br>B. Área de capacidades personales
+                  <br>C. Área de Planeación
+                  <br>D. Área de Habilidades sociales
+                  <br>E. Perfil emprendedor BANG</b>
+                <br><br>Es importante recordar que estos resultados ofrecen una descripción <b>aproximada
+                  <br> y no definitiva</b> de tus habilidades reales, y en todo caso esta valoración puede ser
+                <br> <b>complementada con otras estrategias.</b>
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!--Row con botón-->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="goNext()" fill="clear">
+          <img id="btnSiguiente" src="../../../assets/instructions/btnSiguiente.png" alt="">
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-content id="reporte" *ngIf="sections==0">
+  <p id="results">RESULTADOS</p>
+  <ion-grid>
+    <div class="container">
+      <ion-row class="rowItems">
+        <ion-col class="opcionesGridItems" size="12">
+          <ion-row class="enunciado">
+            <ion-col size="12">
+              <p><b>Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la retroelimentación que preparamos
+                  para tí.</b>
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!--Row con botón-->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="goNext()" fill="clear">
+          <img id="btnSiguiente" src="../../../assets/instructions/btnSiguienteO.png" alt="">
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
