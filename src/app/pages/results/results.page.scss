@@ -4,10 +4,18 @@
     z-index: 0;
 }
 
-#results{
+.results {
     text-align: center;
     color: #fff;
     font-size: 6vh;
+    font-family: "Montserrat";
+    font-weight: 600;
+}
+
+.Title {
+    text-align: center;
+    color: #fff;
+    font-size: 5.5vh;
     font-family: "Montserrat";
     font-weight: 600;
 }
@@ -23,6 +31,7 @@ ion-grid {
         height: 100%;
         width: 100%;
         padding-bottom: 2vh;
+
         .opcionesGridItems {
             position: relative;
             color: #000000;
@@ -36,16 +45,42 @@ ion-grid {
                 margin: auto;
 
                 p {
-                    font-family: 'Montserrat';
+                    font-family: 'Montserrat Alternates', sans-serif;
+                    font-family: 'Quicksand', sans-serif;
                     transition: all 0.2s ease-in-out;
                     text-align: center;
                     margin: 3em;
                     font-size: 1.5rem;
                 }
+
+
             }
         }
     }
 }
+
+.containerResults {
+    border: solid 1px #fff;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.5rem;
+
+    .enunciadoCard {
+        font-family: 'Montserrat';
+        color: #18243E;
+        font-size: 3.2vh;
+        font-weight: bolder!important;
+    }
+
+    .paragraphCard{
+        font-family: 'Montserrat';
+        color: #000000;
+        font-weight: 400;
+        padding-bottom: 4%;
+        padding-left: 9%;
+        padding-right: 4%;
+    }
+}
+
 
 ion-col {
     text-align: center;
@@ -53,7 +88,8 @@ ion-col {
 
 ion-button {
     height: 8vh;
-    img{
+
+    img {
         height: 100%;
     }
 }
