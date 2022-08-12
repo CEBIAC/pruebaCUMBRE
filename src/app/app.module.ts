@@ -11,6 +11,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CommonModule } from '@angular/common';
 import { ModalsComponentModule } from './components/modals/modals.component.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +22,9 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
   imports: [
     ReactiveFormsModule, 
     FormsModule, 
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     PdfViewerModule,
     CommonModule,
     HttpClientModule,

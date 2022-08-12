@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: true,
+  firebaseConfig: {
+    apiKey: "AIzaSyAu73yDOH6SoIwR_HcwjKmTksFYQGpeYnQ",
+    authDomain: "sapiolab-48252.firebaseapp.com",
+    databaseURL: "https://sapiolab-48252-default-rtdb.firebaseio.com",
+    projectId: "sapiolab-48252",
+    storageBucket: "sapiolab-48252.appspot.com",
+    messagingSenderId: "497175897227",
+    appId: "1:497175897227:web:b11645b1447417c4bbe08e",
+    measurementId: "G-2BMYETGE83"
+  }
 };
 
 /*

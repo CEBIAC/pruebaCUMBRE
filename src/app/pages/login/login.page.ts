@@ -6,6 +6,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from './../../interfaces/user';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -33,20 +34,33 @@ export class LoginPage implements OnInit {
     ],
     email: ['', [Validators.email, Validators.required]],
   });
-  constructor(private formBuilder: FormBuilder, public router: Router) {}
+  user: User = {
+    nombre: '',
+    documento: '',
+    correo: '',
+    uid: '',
+    respuestas: '',
+    resultados: '',
+  };
+  constructor(private formBuilder: FormBuilder, public router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async guardarDatos(login: any) {
-    let datos = {
-      Nombres: this.usuario.value.nombre,
-      Cedula: this.usuario.value.documento,
-      Correo: this.usuario.value.email,
+
+    this.user = {
+      nombre: this.usuario.value.nombre,
+      documento: this.usuario.value.documento,
+      correo: this.usuario.value.email,
+      uid: '',
+      respuestas: '',
+      resultados: '',
     };
-    console.log(datos);
-    sessionStorage.setItem('Cedula', datos.Cedula);
-    this.goNext();
-    /*var userId = false;
+    sessionStorage.setItem('user', JSON.stringify(this.user));
+    this.router.navigateByUrl('/instructions');
+    
+    /*sessionStorage.setItem('Cedula', this.user.documento);
+    var userId = false;
     const user = this.db.getUserData(String(datos.Cedula));
     await user.then(function (doc) {
       if (doc.exists) {
@@ -66,9 +80,5 @@ export class LoginPage implements OnInit {
       this.openLogin(login);
     }*/
     //console.log(datos, typeof(datos));
-  }
-  //Metodo para enviar a results
-  goNext() {
-    this.router.navigateByUrl('/instructions');
   }
 }

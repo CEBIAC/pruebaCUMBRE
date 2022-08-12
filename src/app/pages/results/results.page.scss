@@ -68,6 +68,8 @@ ion-grid {
         font-family: 'Montserrat';
         color: #18243E;
         font-size: 3.2vh;
+        padding-left: 12vw;
+        padding-right: 12vw;
         font-weight: bolder!important;
     }
 
@@ -79,8 +81,17 @@ ion-grid {
         padding-left: 9%;
         padding-right: 4%;
     }
+    .subtitle{
+        color: #12AC88;
+        font-family: 'Montserrat';
+        font-weight: bolder;
+        font-size: 3.2vh;
+    }
 }
 
+ion-row{
+    align-items: center!important;
+}
 
 ion-col {
     text-align: center;
@@ -88,7 +99,8 @@ ion-col {
 
 ion-button {
     height: 8vh;
-
+    margin-top: 3%;
+    margin-bottom: 3%;
     img {
         height: 100%;
     }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SapiolabService } from 'src/app/services/sapiolab.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private router: Router) {}
+  constructor(private sapiolab: SapiolabService,
+    private router: Router, private route: ActivatedRoute) { }
 
   //Metodo para enviar a terms
   empezar() {
-    this.router.navigateByUrl('/terms');
+    this.route.queryParams.subscribe((params) => {
+      const query = params;
+      this.sapiolab.checkQuery(query);
+    }).unsubscribe();
+    //this.router.navigateByUrl('/terms');
   }
 
   //Metodo para enviar a results
