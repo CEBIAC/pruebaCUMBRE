@@ -1,0 +1,63 @@
+ion-content {
+    position: relative;
+    --background: none;
+    background-image: url("../../../assets/instructions/FondoI.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
+
+ion-grid{
+    ion-col{
+        padding-top: 2%;
+        text-align: center;
+        #pPrincipal{
+            font-family: 'Quicksand', sans-serif;
+            color: #FFFF;
+            font-size: 4vh;
+            text-decoration: none;
+        }
+        align-items: center;
+    }
+}
+
+
+ion-button {
+    height: 10vh;
+    img{
+        height: 100%;
+    }
+}
+
+ion-row{
+    align-items: center;
+}
+
+#registro{
+    background-color:#FFFF ;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    border: 1.2vh solid #FFFF;
+    border-radius: 25px;
+    form{
+        label{
+            font-family: 'Quicksand', sans-serif;
+            color: #18243E;
+            font-size: 2.5vh;
+            font-weight: bold;
+        }
+        input {
+            margin: 2vh 0 2vh 0;
+            font-family: 'Quicksand', sans-serif;
+            color: #1D1D1B;
+            font-size: 2vh;
+            width:90% ; 
+            height: 5vh;
+            border-radius: 15px;
+            border: 1px solid #d1d1d1;
+            background: rgb(255, 255, 255);
+        }
+        
+    }
+}

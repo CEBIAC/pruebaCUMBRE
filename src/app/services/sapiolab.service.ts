@@ -91,7 +91,7 @@ export class SapiolabService {
     let search = [];
     const q = query(
       collection(this.db, 'pruebasCUMBRE'),
-      where('documento', '==', String(id))
+      where('documento', '==', Number(id))
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -102,7 +102,9 @@ export class SapiolabService {
 
     if (search.length != 0) {
       if (search.length == 1) {
-        sessionStorage.setItem('results', search[0]);
+        sessionStorage.setItem('resultadosRepo', search[0].resultados)
+        sessionStorage.setItem('nameRepo', search[0].nombre);
+        sessionStorage.setItem('dateRepo', search[0].fecha);
         this.router.navigate(['/results']);
       } 
       /*else {
@@ -127,7 +129,7 @@ export class SapiolabService {
     })
       .then(() => {
         this.load.dismiss();
-        this.router.navigate(['/fin']);
+        this.router.navigate(['/results']);
       })
       .then(async () => {
         await updateDoc(
@@ -144,7 +146,6 @@ export class SapiolabService {
       message: message,
       spinner: 'circles',
     });
-
     this.load.present();
   }
 

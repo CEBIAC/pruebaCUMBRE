@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './interfaces/user';
 import { SapiolabService } from 'src/app/services/sapiolab.service';
+import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-root',
@@ -76,10 +77,10 @@ export class AppComponent {
       this.user.respuestas = JSON.stringify(answers);
       this.user.resultados = JSON.stringify(dimension);
       this.sapiolab.saveResults(this.user);
+      this.sapiolab.checkRepo(this.user.documento);
     } else {
       alert('Error almacenando datos');
     }
-
 
   }
 

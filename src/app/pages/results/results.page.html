@@ -36,7 +36,8 @@
   </ion-grid>
 </ion-content>
 <ion-content id="reporte" *ngIf="sections==0">
-  <p class="results">RESULTADOS</p>
+  <p class="results">{{name}}</p>
+  <p id="date">Fecha: {{date}}</p>
   <ion-grid>
     <!--Row con PERFIL GLOBAL-->
     <div class="containerResults">
@@ -49,7 +50,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="7">
+        <ion-col size-lg="7" size-sm="12">
           <p class="paragraphCard">
             La puntuación global se compone teniendo en cuenta el
             desempeño total en las <b> tres dimensiones principales,</b>
@@ -61,7 +62,10 @@
             y conocimientos en relación al ámbito del emprendimiento.
           </p>
         </ion-col>
-        <ion-col size="5"> 
+        <ion-col size-lg="5" size-sm="12" class="radar">
+          <div id="puntuacion-radar-global">
+            <canvas #barChart4></canvas>
+          </div>
         </ion-col>
       </ion-row>
     </div>
@@ -77,27 +81,28 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="5">
-          
+        <ion-col size-lg="5" size-sm="12" class="radar">
+          <div class="puntuacion-radar">
+            <canvas #barChart></canvas>
+          </div>
         </ion-col>
-        <ion-col size="7">
+        <ion-col size-lg="7" size-sm="12">
           <ion-row>
             <ion-col size="2">
               <ion-button fill="clear">
-                <img id="btnSiguiente" src="../../../assets/results/btnPrev.png" alt="">
+                <img id="btnSiguiente" src="../../../assets/results/btnPrev.png" alt=""
+                  (click)="prevCopy('capacidades')">
               </ion-button>
             </ion-col>
             <ion-col size="8">
-              <h3 class="subtitle">Subtitle</h3>
-              <p class="paragraphCard">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis sint fugiat saepe molestias illum
-                impedit ipsum mollitia fugit dolore tenetur deleniti, accusamus et consectetur. Atque voluptates
-                inventore illum mollitia veritatis?
+              <h3 class="subtitle">{{copysCapacidades[positionCopyCapacidades][0]}}</h3>
+              <p class="paragraphCard">{{copysCapacidades[positionCopyCapacidades][1]}}
               </p>
             </ion-col>
             <ion-col size="2">
               <ion-button fill="clear">
-                <img id="btnSiguiente" src="../../../assets/results/btnNext.png" alt="">
+                <img id="btnSiguiente" src="../../../assets/results/btnNext.png" alt=""
+                  (click)="nextCopy('capacidades')">
               </ion-button>
             </ion-col>
           </ion-row>
@@ -116,28 +121,28 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="5">
-          
+        <ion-col size-lg="5" size-sm="12" class="radar">
+          <div class="puntuacion-radar">
+            <canvas #barChart2></canvas>
+          </div>
         </ion-col>
-        <ion-col size="7">
+        <ion-col size-lg="7" size-sm="12">
           <ion-row>
             <ion-col size="2">
               <ion-button fill="clear">
-                <img id="btnSiguiente" src="../../../assets/results/btnPrev.png" alt="">
+                <img id="btnSiguiente" src="../../../assets/results/btnPrev.png" alt=""
+                  (click)="prevCopy('planeacion')">
               </ion-button>
             </ion-col>
-            
+
             <ion-col size="8">
-              <h3 class="subtitle">Subtitle</h3>
-              <p class="paragraphCard">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis sint fugiat saepe molestias illum
-                impedit ipsum mollitia fugit dolore tenetur deleniti, accusamus et consectetur. Atque voluptates
-                inventore illum mollitia veritatis?
-              </p>
+              <h3 class="subtitle">{{copysPlaneacion[positionCopyPlaneacion][0]}}</h3>
+              <p class="paragraphCard">{{copysPlaneacion[positionCopyPlaneacion][1]}}
             </ion-col>
             <ion-col size="2">
               <ion-button fill="clear">
-                <img id="btnSiguiente" src="../../../assets/results/btnNext.png" alt="">
+                <img id="btnSiguiente" src="../../../assets/results/btnNext.png" alt=""
+                  (click)="nextCopy('planeacion')">
               </ion-button>
             </ion-col>
           </ion-row>
@@ -156,27 +161,27 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="5">
-          
+        <ion-col size-lg="5" size-sm="12" class="radar">
+          <div class="puntuacion-radar">
+            <canvas #barChart3></canvas>
+          </div>
         </ion-col>
-        <ion-col size="7">
+        <ion-col size-lg="7" size-sm="12">
           <ion-row>
             <ion-col size="2">
               <ion-button fill="clear">
-                <img id="btnSiguiente" src="../../../assets/results/btnPrev.png" alt="">
+                <img id="btnSiguiente" src="../../../assets/results/btnPrev.png" alt=""
+                  (click)="prevCopy('habilidades')">
               </ion-button>
             </ion-col>
             <ion-col size="8">
-              <h3 class="subtitle">Subtitle</h3>
-              <p class="paragraphCard">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis sint fugiat saepe molestias illum
-                impedit ipsum mollitia fugit dolore tenetur deleniti, accusamus et consectetur. Atque voluptates
-                inventore illum mollitia veritatis?
-              </p>
+              <h3 class="subtitle">{{copysHabilidades[positionCopyHabilidades][0]}}</h3>
+              <p class="paragraphCard">{{copysHabilidades[positionCopyHabilidades][1]}}
             </ion-col>
             <ion-col size="2">
               <ion-button fill="clear">
-                <img id="btnSiguiente" src="../../../assets/results/btnNext.png" alt="">
+                <img id="btnSiguiente" src="../../../assets/results/btnNext.png" alt=""
+                  (click)="nextCopy('habilidades')">
               </ion-button>
             </ion-col>
           </ion-row>

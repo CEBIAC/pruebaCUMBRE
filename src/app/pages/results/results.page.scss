@@ -10,6 +10,21 @@
     font-size: 6vh;
     font-family: "Montserrat";
     font-weight: 600;
+    margin-bottom: 1%;
+}
+
+.radar{
+    padding: 4%;
+}
+
+#date{
+    text-align: center;
+    color: #fff;
+    font-size: 3vh;
+    font-family: "Montserrat";
+    font-weight: 300;
+    padding-top: 0%;
+    margin-top: 0%;
 }
 
 .Title {
@@ -80,6 +95,7 @@ ion-grid {
         padding-bottom: 4%;
         padding-left: 9%;
         padding-right: 4%;
+        font-size: large;
     }
     .subtitle{
         color: #12AC88;

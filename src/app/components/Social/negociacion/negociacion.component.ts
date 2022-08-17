@@ -58,7 +58,7 @@ export class NegociacionComponent implements OnInit {
       if (this.index == 0 + this.copys.length) {
         this.app.respuestasDimsension(this.rptasNegociacion, 20);
         this.app.promedioDimension(this.rptasNegociacion, 20);
-        this.app.navegarA('/results');
+        //this.app.navegarA('/results');
       } else {
         this.opciones.forEach((element, index) => {
           let elmnt: HTMLElement = document.getElementById(element[2]);

@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
   Validators,
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from './../../interfaces/user';
-import { first } from 'rxjs/operators';
+//import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +45,6 @@ export class LoginPage implements OnInit {
   ngOnInit() { }
 
   async guardarDatos(login: any) {
-
     this.user = {
       nombre: this.usuario.value.nombre,
       documento: this.usuario.value.documento,
