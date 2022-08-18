@@ -33,12 +33,12 @@ export class AppComponent {
     let promedioDim = 0;
     if (index == 14) {
       promedioDim = arr.reduce(reducer) / 6;
-      this.promediosDim[index] = parseInt(promedioDim.toFixed(2));
+      this.promediosDim[index] = Number(promedioDim.toFixed(2));
       this.arrPlaneación[index - 12] = arr.reduce(reducer) / 6;
       console.log(this.arrPlaneación)
     } else {
       promedioDim = arr.reduce(reducer) / 4;
-      this.promediosDim[index] = parseInt(promedioDim.toFixed(2));
+      this.promediosDim[index] = Number(promedioDim.toFixed(2));
       if (index == 11) {
         this.Capacidades = this.promediosDim.reduce(reducer) / 12;
         this.Capacidades = this.Capacidades.toFixed(2);
@@ -77,7 +77,7 @@ export class AppComponent {
       this.user.respuestas = JSON.stringify(answers);
       this.user.resultados = JSON.stringify(dimension);
       this.sapiolab.saveResults(this.user);
-      this.sapiolab.checkRepo(this.user.documento);
+      
     } else {
       alert('Error almacenando datos');
     }

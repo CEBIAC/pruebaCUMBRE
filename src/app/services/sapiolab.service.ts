@@ -129,7 +129,6 @@ export class SapiolabService {
     })
       .then(() => {
         this.load.dismiss();
-        this.router.navigate(['/results']);
       })
       .then(async () => {
         await updateDoc(
@@ -138,6 +137,8 @@ export class SapiolabService {
             ['pruebasCUNBRE.disponibles']: increment(-1),
           }
         );
+        this.checkRepo(user.documento);
+        this.router.navigate(['/results']);
       });
   }
 
