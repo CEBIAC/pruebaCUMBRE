@@ -1,4 +1,4 @@
-<ion-content class="inicio" *ngIf="sections==0">
+<ion-content class="inicio" [hidden]="sections!=0">
   <p class="results">RESULTADOS</p>
   <ion-grid>
     <div class="container">
@@ -35,7 +35,7 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-content id="reporte" *ngIf="sections==1">
+<ion-content id="reporte" [hidden]="sections!=1">
   <p class="results">{{name}}</p>
   <p id="date">Fecha: {{date}}</p>
   <ion-grid>
@@ -206,7 +206,7 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-content class="inicio" *ngIf="sections==2">
+<ion-content class="inicio" [hidden]="sections!=2">
   <p class="results">¡Gracias por hacer la demostración de nuestra prueba CUNbre!</p>
   <ion-grid>
     <div class="container">
