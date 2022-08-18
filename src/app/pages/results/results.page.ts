@@ -460,44 +460,6 @@ export class ResultsPage implements OnInit {
       : (this.copyNegociacion =
           'Solicita reciprocidad para progresar proporcionalmente en las negociaciones, se percata de que las motivaciones de la contraparte estén reflejadas en los objetivos, los acuerdos y en los resultados, y se interesa por el trasfondo emocional de los intereses  de los otros.');
 
-    Number(this.array['Capacidades']) >= 0 &&
-    Number(this.array['Capacidades']) <= 1
-      ? (this.copyCapacidades = 'bajo')
-      : Number(this.array['Capacidades']) >= 1.1 &&
-        Number(this.array['Capacidades']) <= 2
-      ? (this.copyCapacidades = 'Medio-bajo')
-      : Number(this.array['Capacidades']) >= 2.1 &&
-        Number(this.array['Capacidades']) <= 3
-      ? (this.copyCapacidades = 'Medio')
-      : Number(this.array['Capacidades']) >= 3.1 &&
-        Number(this.array['Capacidades']) <= 4
-      ? (this.copyCapacidades = 'Alto')
-      : (this.copyCapacidades = 'Muy alto');
-
-    Number(this.array['Planeacion']) >= 0 &&
-    Number(this.array['Planeacion']) <= 1
-      ? (this.copyPlaneacion = 'bajo')
-      : Number(this.array['Planeacion']) >= 1.1 &&
-        Number(this.array['Planeacion']) <= 2
-      ? (this.copyPlaneacion = 'Medio-bajo')
-      : Number(this.array['Planeacion']) >= 2.1 &&
-        Number(this.array['Planeacion']) <= 3
-      ? (this.copyPlaneacion = 'Medio')
-      : Number(this.array['Planeacion']) >= 3.1 &&
-        Number(this.array['Planeacion']) <= 4
-      ? (this.copyPlaneacion = 'Alto')
-      : (this.copyPlaneacion = 'Muy alto');
-
-    Number(this.array['Social']) >= 0 && Number(this.array['Social']) <= 1
-      ? (this.copySocial = 'bajo')
-      : Number(this.array['Social']) >= 1.1 && Number(this.array['Social']) <= 2
-      ? (this.copySocial = 'Medio-bajo')
-      : Number(this.array['Social']) >= 2.1 && Number(this.array['Social']) <= 3
-      ? (this.copySocial = 'Medio')
-      : Number(this.array['Social']) >= 3.1 && Number(this.array['Social']) <= 4
-      ? (this.copySocial = 'Alto')
-      : (this.copySocial = 'Muy alto');
-
     Number(this.array['Global']) >= 0 && Number(this.array['Global']) <= 1
       ? (this.copyGlobal =
           'Persona enfocada en conservar competencias funcionales elementales para el rendimiento en el contexto laboral. Con principal interés en resolver necesidades y responsabilidades básicas e inmediatas. Tiene oportunidadde fortalecer sus rasgos de desempeño para elaborar e implementar proyectos de emprendimiento y despertar un espíritu emprendedor como alternativa al empleo')
@@ -655,7 +617,7 @@ export class ResultsPage implements OnInit {
         responsive: true,
         elements: {
           line: {
-            borderWidth: 3,
+            borderWidth: 2,
           },
         },
         scales: {
@@ -688,6 +650,7 @@ export class ResultsPage implements OnInit {
         plugins: {
           legend: {
             display: true,
+            position: 'bottom',
             labels: {
               color: 'rgb(0, 0, 0)',
               font: {
@@ -788,6 +751,7 @@ export class ResultsPage implements OnInit {
         plugins: {
           legend: {
             display: true,
+            position: 'bottom',
             labels: {
               color: 'rgb(0, 0, 0)',
               font: {
@@ -878,6 +842,7 @@ export class ResultsPage implements OnInit {
         plugins: {
           legend: {
             display: true,
+            position: 'bottom',
             labels: {
               color: 'rgb(0, 0, 0)',
               font: {

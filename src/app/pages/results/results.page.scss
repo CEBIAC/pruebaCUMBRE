@@ -1,4 +1,4 @@
-#inicio {
+.inicio {
     --background: url("../../../assets/instructions/FondoI.png") no-repeat center/cover fixed;
     background-color: #18243E;
     z-index: 0;
@@ -7,10 +7,11 @@
 .results {
     text-align: center;
     color: #fff;
-    font-size: 6vh;
+    font-size: 5vh;
     font-family: "Montserrat";
     font-weight: 600;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
+    margin-top: 2.8%;
 }
 
 .radar{
@@ -92,16 +93,23 @@ ion-grid {
         font-family: 'Montserrat';
         color: #000000;
         font-weight: 400;
-        padding-bottom: 4%;
         padding-left: 9%;
         padding-right: 4%;
-        font-size: large;
+        font-size: 2vh;
     }
     .subtitle{
         color: #12AC88;
         font-family: 'Montserrat';
         font-weight: bolder;
         font-size: 3.2vh;
+    }
+    .globalReport{
+        color: #12AC88;
+        font-family: 'Montserrat';
+        font-weight: 400;
+        font-size: 1.8vh;
+        padding-left: 9%;
+        padding-right: 4%;
     }
 }
 
