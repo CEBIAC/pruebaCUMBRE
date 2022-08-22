@@ -1,288 +1,309 @@
 ion-content {
-    position: relative;
-    --background: none;
-    background-image: url("../../../../assets/instructions/FondoI.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom center;
+  position: relative;
+  --background: none;
+  background-image: url("/assets/instructions/FondoI.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 }
 
 ion-grid {
-    width: 100%;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .rowItems {
     height: 100%;
-    margin: 0;
-    padding: 15%;
+    width: 100%;
 
-    .rowItems {
+    .opcionesGridItems {
+      position: relative;
+      color: #18243e;
+      font-weight: 500;
+      border: solid 1px #fff;
+      background-color: rgb(255, 255, 255);
+      border-radius: 0.5rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+        width: 99.6%;
         height: 100%;
-        width: 100%;
+      }
 
-        .opcionesGridItems {
-            position: relative;
-            color: #18243E;
-            font-weight: 500;
-            border: solid 1px #fff;
-            background-color: rgb(255, 255, 255);
-            border-radius: 0.5rem;
+      .enunciado {
+        width: 80%;
+        margin: auto;
 
-            &::before {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: -1;
-                width: 99.6%;
-                height: 100%;
-            }
-
-            .enunciado {
-                width: 80%;
-                margin: auto;
-
-                p {
-                    font-family: 'Montserrat Alternates', sans-serif;
-                    font-family: 'Quicksand', sans-serif;
-                    transition: all 0.2s ease-in-out;
-                    text-align: center;
-                    margin: 3em;
-                    font-size: 1.5rem;
-                }
-            }
-
-            .optionNumber {
-                width: 85%;
-                margin: auto;
-                display: flex;
-                justify-content: space-between;
-                align-items: stretch;
-
-                .option {
-                    .paragraph {
-                        justify-content: center;
-                        align-items: center;
-                        color: #1D1D1B;
-                        font-family: 'Montserrat Alternates', sans-serif;
-                        font-family: 'Quicksand', sans-serif;
-                        font-size: 1.5rem;
-                        text-align: center;
-                        font-weight: bolder;
-                    }
-
-                    button {
-                        z-index: 2;
-                        width: 5vw;
-                        height: 10vh;
-                        color: #000;
-                        background-color: #fff;
-                        font-size: 2rem;
-                        font-family: 'Montserrat Alternates', sans-serif;
-                        font-family: 'Quicksand', sans-serif;
-                        text-align: center;
-                        transition: all 0.2s ease-in-out;
-                    }
-
-                    #opt1,
-                    #opt2 {
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX1.png') -10px -10px;
-                    }
-
-                    #opt3 {
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX21.png') -10px -10px;
-                    }
-
-                    #opt4,
-                    #opt5 {
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX31.png') -10px -10px;
-                    }
-
-                    #opt1:hover,
-                    #opt2:hover {
-                        color: rgb(255, 255, 255);
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX2.png') -10px -10px;
-                    }
-
-                    #opt3:hover {
-                        color: rgb(255, 255, 255);
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX22.png') -10px -10px;
-                    }
-
-                    #opt4:hover,
-                    #opt5:hover {
-                        color: rgb(255, 255, 255);
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX32.png') -10px -10px;
-                    }
-
-                    #opt1:active,
-                    #opt2:active,
-                    #opt1:focus,
-                    #opt2:focus {
-                        color: rgb(255, 255, 255);
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX2.png') -10px -10px;
-                    }
-
-                    #opt3:active,
-                    #opt3:focus {
-                        color: rgb(255, 255, 255);
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX22.png') -10px -10px;
-                    }
-
-                    #opt4:active,
-                    #opt5:active,
-                    #opt4:focus,
-                    #opt5:focus {
-                        color: rgb(255, 255, 255);
-                        width: 80px;
-                        height: 83px;
-                        background: url('../../../../assets/hexagon/HX32.png') -10px -10px;
-                    }
-                }
-            }
+        p {
+          font-family: "Montserrat Alternates", sans-serif;
+          font-family: "Quicksand", sans-serif;
+          transition: all 0.2s ease-in-out;
+          text-align: center;
+          margin: 3em;
+          font-size: 1.5rem;
         }
+      }
 
-        .progreso {
-            margin: 6em auto 1em auto;
+      .optionNumber {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
 
-            ion-row {
-                position: relative;
-                width: 60%;
-                margin: auto;
-                display: flex;
-                justify-content: space-between;
-                align-content: center;
+        .option {
+          .paragraph {
+            justify-content: center;
+            align-items: center;
+            color: #1d1d1b;
+            font-family: "Montserrat Alternates", sans-serif;
+            font-family: "Quicksand", sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: bolder;
+          }
 
-                ion-col {
-                    border-radius: 8px;
-                    height: 6px;
-                    padding: 0;
-                }
+          button {
+            z-index: 2;
+            width: 5vw;
+            height: 10vh;
+            color: #000;
+            background-color: #fff;
+            font-size: 2rem;
+            font-family: "Montserrat Alternates", sans-serif;
+            font-family: "Quicksand", sans-serif;
+            text-align: center;
+            transition: all 0.2s ease-in-out;
+          }
 
-                .virtual {
-                    background-color: #80808073;
-                }
+          #opt1,
+          #opt2 {
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX1.png") -10px -10px;
+          }
 
-                .actual {
-                    background-color: #fff;
-                }
+          #opt3 {
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX21.png") -10px -10px;
+          }
 
-                .btnContinuar {
-                    position: absolute;
-                    right: -5vw;
-                    bottom: -200%;
-                    width: 2.5em;
-                    height: 2.5em;
-                    border-radius: 50%;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    background-size: 100% 100%;
-                    cursor: pointer;
-                    transition: all 0.2s ease-in-out;
-                    &:hover {
-                        transform: scale(1.1);
-                    }
-                }
-            }
+          #opt4,
+          #opt5 {
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX31.png") -10px -10px;
+          }
+
+          #opt1:hover,
+          #opt2:hover {
+            color: rgb(255, 255, 255);
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX2.png") -10px -10px;
+          }
+
+          #opt3:hover {
+            color: rgb(255, 255, 255);
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX22.png") -10px -10px;
+          }
+
+          #opt4:hover,
+          #opt5:hover {
+            color: rgb(255, 255, 255);
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX32.png") -10px -10px;
+          }
+
+          #opt1:active,
+          #opt2:active,
+          #opt1:focus,
+          #opt2:focus {
+            color: rgb(255, 255, 255);
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX2.png") -10px -10px;
+          }
+
+          #opt3:active,
+          #opt3:focus {
+            color: rgb(255, 255, 255);
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX22.png") -10px -10px;
+          }
+
+          #opt4:active,
+          #opt5:active,
+          #opt4:focus,
+          #opt5:focus {
+            color: rgb(255, 255, 255);
+            width: 80px;
+            height: 83px;
+            background: url("/assets/hexagon/HX32.png") -10px -10px;
+          }
         }
+      }
     }
+
+    .colCont {
+      .btnContinuar {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+          background-color: #6f6f6e;
+          color: white;
+        }
+      }
+    }
+
+    .progreso {
+      margin: 2em auto 1em auto;
+
+      ion-row {
+        position: relative;
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+
+        ion-col {
+          border-radius: 8px;
+          height: 6px;
+          padding: 0;
+        }
+
+        .virtual {
+          background-color: #80808073;
+        }
+
+        .actual {
+          background-color: #fff;
+        }
+
+        .btnContinuar {
+          position: absolute;
+          right: -5vw;
+          bottom: -200%;
+          width: 2.5em;
+          height: 2.5em;
+          border-radius: 50%;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
 }
 
 ion-col {
-    text-align: center;
+  text-align: center;
 }
 
 .actived {
+  #opt1:active,
+  #opt2:active,
+  #opt1:focus,
+  #opt2:focus {
+    color: #000;
+    background-color: #e42320;
+  }
 
-    #opt1:active,
-    #opt2:active,
-    #opt1:focus,
-    #opt2:focus {
-        color: #000;
-        background-color: #E42320;
-    }
+  #opt3:active,
+  #opt3:focus {
+    background-color: #6f6f6e;
+  }
 
-    #opt3:active,
-    #opt3:focus {
-        background-color: #6F6F6E;
-    }
-
-    #opt4:active,
-    #opt5:active,
-    #opt4:focus,
-    #opt5:focus {
-        background-color: #69B32D;
-    }
+  #opt4:active,
+  #opt5:active,
+  #opt4:focus,
+  #opt5:focus {
+    background-color: #69b32d;
+  }
 }
 
 @media (max-width: 800px) {
-    #titulo_intro {
-        #h1titulo {
-            font-size: 6vh;
-        }
+  #titulo_intro {
+    #h1titulo {
+      font-size: 6vh;
     }
+  }
 
-    ion-grid {
-        .rowItems {
-            height: 100%;
-            width: 100%;
+  ion-grid {
+    .rowItems {
+      height: 100%;
+      width: 100%;
 
-            .opcionesGridIntro {
-                .intro {
-                    width: 90%;
-                    margin: auto;
+      .opcionesGridIntro {
+        .intro {
+          width: 90%;
+          margin: auto;
 
-                    p {
-                        font-family: "Montserrat";
-                        font-size: 2.5vh;
-                        transition: all 0.2s ease-in-out;
-                        text-align: center;
-                        margin: 1.5vw;
-                    }
-                }
-            }
-
-            .opcionesGridItems {
-                .enunciado {
-                    p {
-                        margin: 2vh 1vw 4vh 1vw;
-                        font-size: 2.2vh;
-                    }
-                }
-
-                .opciones {
-                    .opcion {
-                        position: relative;
-                        padding: 0;
-
-                        button {
-                            font-size: 0.5vh;
-                        }
-                    }
-                }
-            }
-
-            .progreso {
-                ion-row {
-                    button {
-                        right: -11vw !important;
-                    }
-                }
-            }
+          p {
+            font-family: "Montserrat";
+            font-size: 2.5vh;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            margin: 1.5vw;
+          }
         }
+      }
+
+      .opcionesGridItems {
+        .enunciado {
+          p {
+            margin: 2vh 1vw 4vh 1vw;
+            font-size: 2.2vh;
+          }
+        }
+
+        .opciones {
+          .opcion {
+            position: relative;
+            padding: 0;
+
+            button {
+              font-size: 0.5vh;
+            }
+          }
+        }
+      }
+
+      .progreso {
+        ion-row {
+          button {
+            right: -11vw !important;
+          }
+        }
+      }
     }
+  }
 }

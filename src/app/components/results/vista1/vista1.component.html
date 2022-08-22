@@ -1,0 +1,220 @@
+<ion-content id="reporte">
+  <p class="results">{{ name }}</p>
+  <p id="date">Fecha: {{ date }}</p>
+  <ion-grid class="ion-padding">
+    <!--Row con PERFIL GLOBAL-->
+    <div class="containerResults">
+      <ion-row class="enunciado">
+        <ion-col size="12">
+          <p class="enunciadoCard">
+            <b
+              >Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+              retroelimentación que preparamos para tí.</b
+            >
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-lg="6" size-md="12">
+          <ion-row>
+            <p class="paragraphCard">
+              La puntuación global se compone teniendo en cuenta el desempeño
+              total en las <b> tres dimensiones principales,</b>
+              capacidades, planeación y relaciones.
+
+              <br /><br />Este puntaje describe el
+              <b>perfil general del emprendedor o emprendedora</b> en términos
+              de su funcionalidad, aptitud, propensión, autodirección y
+              autogestión de las capacidades y conocimientos en relación al
+              ámbito del emprendimiento.
+            </p>
+          </ion-row>
+          <ion-row>
+            <p class="globalReport">{{ copyGlobal }}</p>
+          </ion-row>
+        </ion-col>
+        <ion-col size-lg="6" size-md="12">
+          <div id="puntuacion-radar-global">
+            <canvas #barChart4></canvas>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <p class="Title">Capacidades para el emprendimiento</p>
+    <!--Row con dimensiones para el emprendimiento-->
+    <div class="containerResults">
+      <ion-row class="enunciado">
+        <ion-col size="12">
+          <p class="enunciadoCard">
+            <b
+              >Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+              retroelimentación que preparamos para tí.</b
+            >
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-lg="6" size-md="12" class="radar">
+          <div class="puntuacion-radar">
+            <canvas #barChart></canvas>
+          </div>
+        </ion-col>
+        <ion-col size-lg="6" size-md="12">
+          <ion-row>
+            <ion-col size="2">
+              <ion-button fill="clear">
+                <img
+                  id="btnSiguiente"
+                  src="/assets/results/btnPrev.png"
+                  alt=""
+                  (click)="prevCopy('capacidades')"
+                />
+              </ion-button>
+            </ion-col>
+            <ion-col size="8">
+              <h3 class="subtitle">
+                {{ copysCapacidades[positionCopyCapacidades][0] }}
+              </h3>
+              <p class="paragraphCard">
+                {{ copysCapacidades[positionCopyCapacidades][1] }}
+              </p>
+            </ion-col>
+            <ion-col size="2">
+              <ion-button fill="clear">
+                <img
+                  id="btnSiguiente"
+                  src="/assets/results/btnNext.png"
+                  alt=""
+                  (click)="nextCopy('capacidades')"
+                />
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <p class="Title">Planeación</p>
+    <!--Row planeación-->
+    <div class="containerResults">
+      <ion-row class="enunciado">
+        <ion-col size="12">
+          <p class="enunciadoCard">
+            <b
+              >Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+              retroelimentación que preparamos para tí..</b
+            >
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-lg="5" size-md="12" class="radar">
+          <div class="puntuacion-radar">
+            <canvas #barChart2></canvas>
+          </div>
+        </ion-col>
+        <ion-col size-lg="7" size-md="12">
+          <ion-row>
+            <ion-col size="2">
+              <ion-button fill="clear">
+                <img
+                  id="btnSiguiente"
+                  src="/assets/results/btnPrev.png"
+                  alt=""
+                  (click)="prevCopy('planeacion')"
+                />
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="8">
+              <h3 class="subtitle">
+                {{ copysPlaneacion[positionCopyPlaneacion][0] }}
+              </h3>
+              <p class="paragraphCard">
+                {{ copysPlaneacion[positionCopyPlaneacion][1] }}
+              </p></ion-col
+            >
+
+            <ion-col size="2">
+              <ion-button fill="clear">
+                <img
+                  id="btnSiguiente"
+                  src="/assets/results/btnNext.png"
+                  alt=""
+                  (click)="nextCopy('planeacion')"
+                />
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <p class="Title">Habilidades sociales</p>
+    <!--Row planeación-->
+    <div class="containerResults">
+      <ion-row class="enunciado">
+        <ion-col size="12">
+          <p class="enunciadoCard">
+            <b
+              >Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+              retroelimentación que preparamos para tí..</b
+            >
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-lg="5" size-md="12" class="radar">
+          <div class="puntuacion-radar">
+            <canvas #barChart3></canvas>
+          </div>
+        </ion-col>
+        <ion-col size-lg="7" size-md="12">
+          <ion-row>
+            <ion-col size="2">
+              <ion-button fill="clear">
+                <img
+                  id="btnSiguiente"
+                  src="/assets/results/btnPrev.png"
+                  alt=""
+                  (click)="prevCopy('habilidades')"
+                />
+              </ion-button>
+            </ion-col>
+            <ion-col size="8">
+              <h3 class="subtitle">
+                {{ copysHabilidades[positionCopyHabilidades][0] }}
+              </h3>
+              <p class="paragraphCard">
+                {{ copysHabilidades[positionCopyHabilidades][1] }}
+              </p></ion-col
+            >
+
+            <ion-col size="2">
+              <ion-button fill="clear">
+                <img
+                  id="btnSiguiente"
+                  src="/assets/results/btnNext.png"
+                  alt=""
+                  (click)="nextCopy('habilidades')"
+                />
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+    <!--Row con botón-->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button
+          (click)="goNext()"
+          color="cumbrepurple"
+          class="buttonAdvanced"
+          >Siguiente
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

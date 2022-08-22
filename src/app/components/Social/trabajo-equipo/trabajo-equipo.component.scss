@@ -1,7 +1,7 @@
 ion-content {
     position: relative;
     --background: none;
-    background-image: url("../../../../assets/terms/FondoT.png");
+    background-image: url("/assets/terms/FondoT.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom center;
@@ -9,9 +9,11 @@ ion-content {
 
 ion-grid {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     margin: 0;
-    padding: 15%;
+    display: flex;
+    align-items: center;
+    position: relative;
 
     .rowItems {
         height: 100%;
@@ -84,34 +86,34 @@ ion-grid {
                     #opt2 {
                         width: 93px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R1.png') -10px -10px;
+                        background: url('/assets/rectangle/R1.png') -10px -10px;
                     }
 
                     #opt3 {
                         width: 92px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R21.png') -10px -10px;
+                        background: url('/assets/rectangle/R21.png') -10px -10px;
                     }
 
                     #opt4,
                     #opt5 {
                         width: 93px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R31.png') -10px -10px;
+                        background: url('/assets/rectangle/R31.png') -10px -10px;
                     }
 
                     #opt1:hover,
                     #opt2:hover {
                         width: 93px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R2.png') -10px -10px;
+                        background: url('/assets/rectangle/R2.png') -10px -10px;
                         color: #ffff;
                     }
 
                     #opt3:hover {
                         width: 92px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R22.png') -10px -10px;
+                        background: url('/assets/rectangle/R22.png') -10px -10px;
                         color: #ffff;
                     }
 
@@ -119,7 +121,7 @@ ion-grid {
                     #opt5:hover {
                         width: 93px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R32.png') -10px -10px;
+                        background: url('/assets/rectangle/R32.png') -10px -10px;
                         color: #ffff;
                     }
 
@@ -129,7 +131,7 @@ ion-grid {
                     #opt2:focus {
                         width: 93px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R2.png') -10px -10px;
+                        background: url('/assets/rectangle/R2.png') -10px -10px;
                         color: #ffff;
                     }
 
@@ -137,7 +139,7 @@ ion-grid {
                     #opt3:focus {
                         width: 92px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R22.png') -10px -10px;
+                        background: url('/assets/rectangle/R22.png') -10px -10px;
                         color: #ffff;
                     }
 
@@ -147,15 +149,35 @@ ion-grid {
                     #opt5:focus {
                         width: 93px;
                         height: 93px;
-                        background: url('../../../../assets/rectangle/R32.png') -10px -10px;
+                        background: url('/assets/rectangle/R32.png') -10px -10px;
                         color: #ffff;
                     }
                 }
             }
         }
 
-        .progreso {
-            margin: 6em auto 1em auto;
+    .colCont {
+      .btnContinuar {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+          background-color: #6f6f6e;
+          color: white;
+        }
+      }
+    }
+
+    .progreso {
+            margin: 2em auto 1em auto;
 
             ion-row {
                 position: relative;

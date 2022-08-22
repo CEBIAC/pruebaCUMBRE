@@ -1,7 +1,7 @@
 <ion-content>
   <ion-grid>
     <!--Row con parrafo principal-->
-    <ion-row>
+    <ion-row class="ion-padding">
       <ion-col>
         <p id="pPrincipal">
           <b>Información Básica</b>
@@ -9,44 +9,59 @@
       </ion-col>
     </ion-row>
     <!--Row con imagen de instrucciones-->
-    <ion-row>
-      <ion-col size="1">
-      </ion-col>
-      <ion-col id="registro"  size="10">
+    <ion-row class="ion-justify-content-center">
+      <ion-col id="registro" size="11" size-md="10">
         <ion-row>
-          <ion-col id="personaje" size="3">
-            <img src="../../../assets/login/personaje_4.png" alt="">
+          <ion-col id="personaje ion-text-center" size="12" size-md="3">
+            <img src="/assets/login/personaje_4.png" alt="" />
           </ion-col>
-          <ion-col size="9">
+          <ion-col size="12" size-md="9" class="ion-align-self-center">
             <form [formGroup]="usuario">
-              <div class="input">
-                <label for="fname">Nombre Completo:</label><br>
-                <input type="text" class="form-control" placeholder="Nombre completo..." formControlName="nombre"
-                  required />
+              <div class="input ion-margin-vertical">
+                <label for="fname">Nombre Completo:</label><br />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre completo..."
+                  formControlName="nombre"
+                  required
+                />
               </div>
-              <div class="input">
-                <label for="fcc">Número de identificación:</label><br>
-                <input type="number" class="form-control" placeholder="Número de documento..." formControlName="documento"
-                  required />
+              <div class="input ion-margin-vertical">
+                <label for="fcc">Número de identificación:</label><br />
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Número de documento..."
+                  formControlName="documento"
+                  required
+                />
               </div>
-              <div class="input">
-                <label for="fcc">Correo:</label><br>
-                <input type="email" class="form-control" placeholder="Correo electrónico..." formControlName="email"
-                  required />
+              <div class="input ion-margin-vertical">
+                <label for="fcc">Correo:</label><br />
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Correo electrónico..."
+                  formControlName="email"
+                  required
+                />
               </div>
             </form>
           </ion-col>
         </ion-row>
-        
-      </ion-col>
-      <ion-col size="1">
       </ion-col>
     </ion-row>
     <!--Row con botón-->
-    <ion-row>
-      <ion-col size="12">
-        <ion-button type="submit" (click)="guardarDatos(login)" fill="clear" [disabled]="!usuario.valid">
-          <img id="btnSiguiente" src="../../../assets/instructions/btnSiguiente.png"  alt="">
+    <ion-row class="ion-padding">
+      <ion-col size="12" class="ion-padding-bottom">
+        <ion-button
+          type="submit"
+          (click)="guardarDatos(login)"
+          class="buttonAdvanced"
+          [disabled]="!usuario.valid"
+          color="cumbregreen"
+          >Siguiente
         </ion-button>
       </ion-col>
     </ion-row>

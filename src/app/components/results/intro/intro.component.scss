@@ -1,0 +1,42 @@
+.inicio {
+  --background: url("/assets/instructions/FondoI.png") no-repeat center/cover
+    fixed;
+  background-color: #18243e;
+  z-index: 0;
+
+  ion-grid {
+    margin: 0;
+    padding-top: 1vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+
+    .rowItems {
+      height: 100%;
+      width: 100%;
+      padding-bottom: 2vh;
+
+      .opcionesGridItems {
+        position: relative;
+        color: #000000;
+        font-weight: 500;
+        border: solid 1px #fff;
+        background-color: rgb(255, 255, 255);
+        border-radius: 0.5rem;
+
+        .enunciado {
+          width: 100%;
+          margin: auto;
+
+          p {
+            font-family: "Montserrat Alternates", sans-serif;
+            font-family: "Quicksand", sans-serif;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            margin: 3em;
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}

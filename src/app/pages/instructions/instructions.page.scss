@@ -1,26 +1,32 @@
 ion-content {
-    --background: url("../../../assets/terms/FondoT.png") no-repeat center/cover fixed;
-    background-color: #12AC88;
-    z-index: 0;
-}
-ion-grid{
-    padding-top: 5%;
-    ion-col{
-        padding-top: 2%;
-        text-align: center;
-        #pPrincipal{
-            font-family: 'Quicksand', sans-serif;
-            color: #FFFF;
-            font-size: 4vh;
-            text-decoration: none;
-        }
-    }
+  --background: url("/assets/terms/FondoT.png") no-repeat center/cover
+    fixed;
+  background-color: #12ac88;
+  z-index: 0;
 }
 
+ion-grid {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
 
-ion-button {
-    height: 10vh;
-    img{
-        height: 100%;
+  ion-col {
+    padding-top: 2%;
+    text-align: center;
+
+    #pPrincipal {
+      font-family: "Quicksand", sans-serif;
+      color: #ffff;
+      font-size: 3.2vh;
+      text-decoration: none;
     }
+
+    img {
+      max-width: 90%;
+    }
+  }
 }

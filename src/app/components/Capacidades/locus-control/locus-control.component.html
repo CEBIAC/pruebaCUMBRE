@@ -1,32 +1,51 @@
 <ion-content>
   <ion-grid>
-    <div class="container">
-      <ion-row *ngIf="index >= 0" class="rowItems">
-        <ion-col class="opcionesGridItems" size="12">
-          <ion-row class="enunciado">
-            <ion-col size="12">
-              <p id="copyControl"> Cuando fracasa alguna actividad de un proyecto en el que avanzo, me cuesta
-                reconocer los factores personales que influyeron en ese resultado.</p>
-            </ion-col>
-          </ion-row>
-          <ion-row class="optionNumber">
-            <ion-col class="option" *ngFor="let opt of opciones" size="2">
-              <button id="{{opt[2]}}" value="{{opt[1]}}" class="ion-text-wrap " (click)="seleccionar($event,opt[1])">
-                {{opt[1]}}
-              </button>
-              <p class="paragraph" class="ion-text-wrap">
-                {{opt[0]}}</p>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col class="progreso" size="12">
-          <ion-row>
-            <ion-progress-bar value="{{progress}}" buffer="0.09" color="dark">
-            </ion-progress-bar>
-            <button class="btnContinuar" (click)="continuar()"></button>
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </div>
+    <ion-row *ngIf="index >= 0" class="rowItems">
+      <ion-col class="opcionesGridItems" size="10" push="1">
+        <ion-row class="enunciado">
+          <ion-col size="12">
+            <p id="copyControl">
+              Cuando fracasa alguna actividad de un proyecto en el que avanzo,
+              me cuesta reconocer los factores personales que influyeron en ese
+              resultado.
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="optionNumber">
+          <ion-col class="option" *ngFor="let opt of opciones" size="2">
+            <button
+              id="{{ opt[2] }}"
+              value="{{ opt[1] }}"
+              class="ion-text-wrap"
+              (click)="seleccionar($event, opt[1])"
+            >
+              {{ opt[1] }}
+            </button>
+            <p class="paragraph" class="ion-text-wrap">
+              {{ opt[0] }}
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col
+        size="12"
+        size-md="1"
+        push-md="1"
+        push="0"
+        class="ion-padding ion-align-self-center colCont"
+      >
+        <button class="btnContinuar" (click)="continuar()">></button>
+      </ion-col>
+      <ion-col class="progreso" size="12">
+        <ion-row>
+          <ion-progress-bar
+            value="{{ progress }}"
+            buffer="0.04"
+            color="progresswhite"
+          >
+          </ion-progress-bar>
+        </ion-row>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
