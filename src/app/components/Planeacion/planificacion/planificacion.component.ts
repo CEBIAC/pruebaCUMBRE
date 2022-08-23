@@ -25,12 +25,13 @@ export class PlanificacionComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasPlanificacion = Array();
   progress = 0.6552;
   constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -48,10 +49,6 @@ export class PlanificacionComponent implements OnInit {
     });
   }
 
-  iniciar() {
-    this.index++;
-  }
-
   continuar() {
     if (this.rptasPlanificacion[this.index - 1] == undefined) {
       alert('Selecciona una opción para continuar');
@@ -66,10 +63,8 @@ export class PlanificacionComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyPlanificacion: HTMLElement =
-              document.getElementById('copyPlanificacion');
             this.index++;
-            copyPlanificacion.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

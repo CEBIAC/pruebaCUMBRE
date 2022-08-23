@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart, registerables} from 'chart.js';
 Chart.register(...registerables);
@@ -8,7 +8,7 @@ Chart.register(...registerables);
   templateUrl: './vista1.component.html',
   styleUrls: ['./vista1.component.scss'],
 })
-export class Vista1Component implements OnInit {
+export class Vista1Component implements OnInit, AfterViewInit {
   @ViewChild('barChart') barChart;
   @ViewChild('barChart2') barChart2;
   @ViewChild('barChart3') barChart3;
@@ -81,6 +81,7 @@ export class Vista1Component implements OnInit {
 
   groupObject() {
     this.array = JSON.parse(sessionStorage.getItem('resultadosRepo'));
+    console.log(this.array)
     this.array['Autoeficacia'] = this.array[0];
     this.array['Locus de control'] = this.array[1];
     this.array['Optimismo'] = this.array[2];
@@ -561,6 +562,9 @@ export class Vista1Component implements OnInit {
       this.array['Resiliencia'],
       this.array['Tolerancia a la frustracion'],
     ];
+
+    console.log(this.dataCapacidades)
+
     this.bars = new Chart(this.barChart.nativeElement, {
       type: 'radar',
       data: {

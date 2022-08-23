@@ -23,46 +23,41 @@ export class AutoeficaciaComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasAuto = Array();
   progress = 0;
 
   constructor(private app: AppComponent) {}
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
 
       if (index == this.opciones.length - 1) {
-        this.rptasAuto[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasAuto[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasAuto);
       }
     });
   }
 
-  iniciar() {
-    this.index++;
-  }
-
   continuar() {
-    if (this.rptasAuto[this.index - 1] == undefined) {
+        if (this.rptasAuto[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasAuto);
-      if (this.index == 0 + this.copys.length) {
+      console.log(this.rptasAuto);
+      if (this.index == this.copys.length - 1) {
         this.app.respuestasDimsension(this.rptasAuto, 0);
-        this.app.promedioDimension(this.rptasAuto, 0);
+        this.app.promedioDimension('Autoeficacia', this.rptasAuto);
         this.app.navegarA('/questionary/control');
       } else {
         this.opciones.forEach((element, index) => {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyAutoeficacia: HTMLElement =
-              document.getElementById('copyAutoeficacia');
             this.index++;
-            copyAutoeficacia.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

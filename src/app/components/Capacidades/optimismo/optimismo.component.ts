@@ -22,13 +22,14 @@ export class OptimismoComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasAuto = Array();
   progress = 0.0963;
 
   constructor(private app: AppComponent) {}
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -44,12 +45,8 @@ export class OptimismoComponent implements OnInit {
     });
   }
 
-  iniciar() {
-    this.index++;
-  }
-
   continuar() {
-    if (this.rptasAuto[this.index - 1] == undefined) {
+        if (this.rptasAuto[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasAuto);
@@ -62,10 +59,8 @@ export class OptimismoComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyOptimismo: HTMLElement =
-              document.getElementById('copyOptimismo');
             this.index++;
-            copyOptimismo.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

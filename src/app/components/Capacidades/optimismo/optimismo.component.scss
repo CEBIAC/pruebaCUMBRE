@@ -47,7 +47,7 @@ ion-grid {
           font-family: "Quicksand", sans-serif;
           transition: all 0.2s ease-in-out;
           text-align: center;
-          margin: 3em;
+          margin: 1.5em;
           font-size: 1.5rem;
         }
       }
@@ -66,15 +66,15 @@ ion-grid {
             color: #1d1d1b;
             font-family: "Montserrat Alternates", sans-serif;
             font-family: "Quicksand", sans-serif;
-            font-size: 1.5rem;
+            font-size: 1rem;
             text-align: center;
             font-weight: bolder;
           }
 
           button {
             z-index: 2;
-            width: 5vw;
-            height: 10vh;
+            width: 50px;
+            height: 50px;
             color: #000;
             background-color: #fff;
             font-size: 2rem;
@@ -141,24 +141,24 @@ ion-grid {
     }
 
     .colCont {
-        .btnContinuar {
-          width: 45px;
-          height: 45px;
-          font-size: 22px;
-          border-radius: 50%;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-          cursor: pointer;
-          transition: all 0.2s ease-in-out;
-  
-          &:hover {
-            transform: scale(1.1);
-            background-color: #6f6f6e;
-            color: white;
-          }
+      .btnContinuar {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+          background-color: #6f6f6e;
+          color: white;
         }
       }
+    }
 
     .progreso {
       margin: 2em auto 1em auto;
@@ -186,7 +186,6 @@ ion-grid {
         }
       }
     }
-    
   }
 }
 
@@ -245,25 +244,24 @@ ion-col {
 
       .opcionesGridItems {
         .enunciado {
+          width: 90%;
           p {
             margin: 2vh 1vw 4vh 1vw;
-            font-size: 2.2vh;
+            font-size: 3vh;
           }
         }
 
-        .opciones {
-          .opcion {
-            position: relative;
-            padding: 0;
-
-            button {
-              font-size: 0.5vh;
+        .optionNumber {
+          .option {
+            .paragraph {
+              font-size: 0.9rem;
             }
           }
         }
       }
 
       .progreso {
+        margin: 1em auto 1em auto;
         ion-row {
           button {
             right: -11vw !important;

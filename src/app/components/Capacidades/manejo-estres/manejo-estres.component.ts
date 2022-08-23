@@ -24,12 +24,13 @@ export class ManejoEstresComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasEstres = Array();
   progress = 0.4212;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -45,12 +46,8 @@ export class ManejoEstresComponent implements OnInit {
     });
   }
 
-  iniciar() {
-    this.index++;
-  }
-
   continuar() {
-    if (this.rptasEstres[this.index - 1] == undefined) {
+    if (this.rptasEstres[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasEstres);
@@ -63,10 +60,8 @@ export class ManejoEstresComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyEstres: HTMLElement =
-              document.getElementById('copyEstres');
             this.index++;
-            copyEstres.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

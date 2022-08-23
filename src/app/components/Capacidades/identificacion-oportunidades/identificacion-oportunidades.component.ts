@@ -25,12 +25,13 @@ export class IdentificacionOportunidadesComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index]
   rptasOportunidades = Array();
   progress = 0.329;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -44,10 +45,6 @@ export class IdentificacionOportunidadesComponent implements OnInit {
         //console.log(this.rptasOportunidades);
       }
     });
-  }
-
-  iniciar() {
-    this.index++;
   }
 
   continuar() {
@@ -64,10 +61,8 @@ export class IdentificacionOportunidadesComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyOportunidades: HTMLElement =
-              document.getElementById('copyOportunidades');
             this.index++;
-            copyOportunidades.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

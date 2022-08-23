@@ -23,13 +23,14 @@ export class PropensionRiesgoComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasRiesgo = Array();
   progress = 0.187;
 
   constructor(private app: AppComponent) {}
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -43,10 +44,6 @@ export class PropensionRiesgoComponent implements OnInit {
         //console.log(this.rptasRiesgo);
       }
     });
-  }
-
-  iniciar() {
-    this.index++;
   }
 
   continuar() {
@@ -63,10 +60,8 @@ export class PropensionRiesgoComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyRiesgo: HTMLElement =
-              document.getElementById('copyRiesgo');
             this.index++;
-            copyRiesgo.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

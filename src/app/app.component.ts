@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './interfaces/user';
 import { SapiolabService } from 'src/app/services/sapiolab.service';
-import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-root',
@@ -20,58 +19,52 @@ export class AppComponent {
   Social;
   globalAverage;
   results;
-
-  constructor(private sapiolab: SapiolabService, public router: Router) {}
+  objProms = {
+    Autoeficacia: 0,
+    'Locus de control': 0,
+    Optimismo: 0,
+    Persistencia: 0,
+    'Propension al Riesgo': 0,
+    Autonomia: 0,
+    Creatividad: 0,
+    'Identificacion de Oportunidades': 0,
+    Flexibilidad: 0,
+    'Manejo de estres': 0,
+    Resiliencia: 10,
+    'Tolerancia a la frustracion': 10,
+    'Orientacion al logro': 10,
+    'Intencion de Emprender': 10,
+    Planificacion: 10,
+    Evaluacion: 10,
+    Eficiencia: 10,
+    Eficacia: 10,
+    Relaciones: 10,
+    'Trabajo en equipo': 10,
+    Negociacion: 20,
+    Capacidades: 20,
+    Planeacion: 20,
+    Social: 20,
+    Global: 20,
+  };
   user: User;
-  respuestasDimsension(arr, index) {
-    this.respuestasDim[index] = arr;
-    //console.log(this.respuestasDim)
+
+  constructor(private sapiolab: SapiolabService, public router: Router) {
+    if (sessionStorage.getItem('respuestas')) {
+      this.respuestasDim = JSON.parse(sessionStorage.getItem('respuestas'));
+    }
   }
 
-  promedioDimension(arr, index) {
+  respuestasDimsension(arr, index) {
+    this.respuestasDim[index] = arr;
+    sessionStorage.setItem('respuestas', JSON.stringify(this.respuestasDim));
+    console.log(this.respuestasDim);
+  }
+
+  promedioDimension(key, array) {
+    let dividend = key == 'Planificacion' ? 6 : 4
     const reducer = (prev, curr) => prev + curr;
-    let promedioDim = 0;
-    if (index == 14) {
-      promedioDim = arr.reduce(reducer) / 6;
-      this.promediosDim[index] = Number(promedioDim.toFixed(2));
-      this.arrPlaneación[index - 12] = arr.reduce(reducer) / 6;
-      console.log(this.arrPlaneación);
-    } else {
-      promedioDim = arr.reduce(reducer) / 4;
-      this.promediosDim[index] = Number(promedioDim.toFixed(2));
-      if (index == 11) {
-        this.Capacidades = this.promediosDim.reduce(reducer) / 12;
-        this.Capacidades = this.Capacidades.toFixed(2);
-        console.log(this.Capacidades);
-      } else if (index > 11 && index <= 17) {
-        this.arrPlaneación[index - 12] = arr.reduce(reducer) / 4;
-        console.log(this.arrPlaneación);
-        if (index == 17) {
-          this.Planeación = this.arrPlaneación.reduce(reducer) / 6;
-          this.Planeación = this.Planeación.toFixed(2);
-          console.log(this.arrPlaneación, this.Planeación);
-        }
-      } else if (index > 17) {
-        this.arrSocial[index - 18] = arr.reduce(reducer) / 4;
-        console.log(this.arrSocial);
-        if (index == 20) {
-          //console.log(this.promediosDim)
-          this.Social = this.arrSocial.reduce(reducer) / 3;
-          this.Social = this.Social.toFixed(2);
-          this.globalAverage = this.promediosDim.reduce(reducer) / 21;
-          this.globalAverage = this.globalAverage.toFixed(2);
-          console.log(this.arrSocial, this.Social, this.globalAverage);
-          this.saveResults(
-            this.respuestasDim,
-            this.promediosDim,
-            this.Capacidades,
-            this.Planeación,
-            this.Social,
-            this.globalAverage
-          );
-        }
-      }
-    }
+    this.objProms[key] = String((array.reduce(reducer) / dividend).toFixed(2));
+    console.log(this.arrPlaneación);
   }
 
   saveResults(answers, dimension, capacidades, planeacion, social, Average) {

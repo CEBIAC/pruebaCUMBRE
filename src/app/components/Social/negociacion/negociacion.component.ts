@@ -23,12 +23,13 @@ export class NegociacionComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasNegociacion = Array();
   progress = 0.9594;
   constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -46,10 +47,6 @@ export class NegociacionComponent implements OnInit {
     });
   }
 
-  iniciar() {
-    this.index++;
-  }
-
   continuar() {
     if (this.rptasNegociacion[this.index - 1] == undefined) {
       alert('Selecciona una opción para continuar');
@@ -64,10 +61,8 @@ export class NegociacionComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyNegociacion: HTMLElement =
-              document.getElementById('copyNegociacion');
             this.index++;
-            copyNegociacion.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

@@ -24,12 +24,13 @@ export class FlexibilidadComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasFlexibilidad = Array();
   progress = 0.3744;
   constructor(private app: AppComponent, private adap: QuestionaryPage) {}
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -43,10 +44,6 @@ export class FlexibilidadComponent implements OnInit {
         //console.log(this.rptasFlexibilidad);
       }
     });
-  }
-
-  iniciar() {
-    this.index++;
   }
 
   continuar() {
@@ -63,10 +60,8 @@ export class FlexibilidadComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyFlexibilidad: HTMLElement =
-              document.getElementById('copyFlexibilidad');
             this.index++;
-            copyFlexibilidad.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });

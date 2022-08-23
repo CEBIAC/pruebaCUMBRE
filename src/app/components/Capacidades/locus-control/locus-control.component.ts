@@ -23,50 +23,41 @@ export class LocusControlComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
-  rptasControl = Array();
+  index = 0;
+  copy = this.copys[this.index];
+  rptasAuto = Array();
   progress = 0.0468;
 
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
 
       if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasControl[this.index - 1] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasControl);
+        this.rptasAuto[this.index] = parseFloat(event.srcElement.value);
+        //console.log(this.rptasAuto);
       }
     });
   }
 
-  iniciar() {
-    this.index++;
-  }
-
   continuar() {
-    if (this.rptasControl[this.index - 1] == undefined) {
+    if (this.rptasAuto[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasControl);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasControl, 1);
-        this.app.promedioDimension(this.rptasControl, 1);
+      console.log(this.rptasAuto);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimsension(this.rptasAuto, 0);
+        this.app.promedioDimension('Autoeficacia', this.rptasAuto);
         this.app.navegarA('/questionary/optimismo');
       } else {
         this.opciones.forEach((element, index) => {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyControl: HTMLElement =
-              document.getElementById('copyControl');
             this.index++;
-            copyControl.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });
@@ -74,6 +65,5 @@ export class LocusControlComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

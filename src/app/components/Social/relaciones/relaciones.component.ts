@@ -22,12 +22,13 @@ export class RelacionesComponent implements OnInit {
     ['Totalmente de acuerdo', '5', 'opt5'],
   ];
 
-  index = 1;
+  index = 0;
+  copy = this.copys[this.index];
   rptasRelaciones = Array();
   progress = 0.8658;
   constructor(private app: AppComponent, private adap: QuestionaryPage) { }
 
-  seleccionar(event, opc) {
+  seleccionar(event) {
     this.opciones.forEach((element, index) => {
       let elmnt: HTMLElement = document.getElementById(element[2]);
       elmnt.className = '';
@@ -45,10 +46,6 @@ export class RelacionesComponent implements OnInit {
     });
   }
 
-  iniciar() {
-    this.index++;
-  }
-
   continuar() {
     if (this.rptasRelaciones[this.index - 1] == undefined) {
       alert('Selecciona una opción para continuar');
@@ -63,10 +60,8 @@ export class RelacionesComponent implements OnInit {
           let elmnt: HTMLElement = document.getElementById(element[2]);
           elmnt.className = '';
           if (index == this.opciones.length - 1) {
-            const copyRelaciones: HTMLElement =
-              document.getElementById('copyRelaciones');
             this.index++;
-            copyRelaciones.textContent = this.copys[this.index - 1];
+            this.copy = this.copys[this.index];
             this.progress = this.progress + 0.0117;
           }
         });
