@@ -63,11 +63,16 @@ export class PdfService {
       maxWidth: width - 10,
     });
 
+    // Autoeficiencia _______________________________________________________________
+
     let copy1 = copys.copyAutoeficacia;
     console.log(copy1);
+    const title1Size = 16;
     const copy1Size = 14;
+    const title1Width = Helvetica.widthOfTextAtSize('Autoeficacia', title1Size);
     const copy1Width = Helvetica.widthOfTextAtSize(copy1, copy1Size);
-    const cop1Height = Helvetica.sizeAtHeight(copy1Size) * (copy1Width / 445);
+    const cop1Height = Helvetica.sizeAtHeight(copy1Size) * (copy1Width / 445) + 15;
+    const y1 = 100;
     console.log(cop1Height);
 
     let svgPath1 =
@@ -79,14 +84,24 @@ export class PdfService {
 
     page1.drawSvgPath(svgPath1, {
       x: 70,
-      y: height - 115,
+      y: height - (y1),
       borderColor: rgb(1, 1, 1),
       color: rgb(1, 1, 1),
     });
 
+    page1.drawText('Autoeficacia', {
+      x: (width - title1Width) / 2,
+      y: height - (y1 + 20),
+      size: title1Size,
+      color: rgb(82 / 255, 195 / 255, 168 / 255),
+      lineHeight: 15,
+      font: HelveticaBold,
+      maxWidth: 445,
+    });
+
     page1.drawText(copy1, {
       x: 70,
-      y: height - 140,
+      y: height - (y1 + 40),
       size: copy1Size,
       color: rgb(0, 0, 0),
       lineHeight: 15,
@@ -94,13 +109,15 @@ export class PdfService {
       maxWidth: 445,
     });
 
+    // Locus de control _______________________________________________________________
+
     let copy2 = copys.copyControl;
     console.log(copy2);
     const copy2Size = 14;
     const copy2Width = Helvetica.widthOfTextAtSize(copy2, copy2Size);
     const copy2Height = Helvetica.sizeAtHeight(copy2Size) * (copy2Width / 445);
     console.log(copy2Height);
-    const x2 = 340
+    let x2 = 340;
 
     let svgPath2 =
       'M0,0 h445 a20,20 0 0 1 20,20 v' +
@@ -111,14 +128,24 @@ export class PdfService {
 
     page1.drawSvgPath(svgPath2, {
       x: 70,
-      y: height - x2 - 25,
+      y: height - 315,
       borderColor: rgb(1, 1, 1),
       color: rgb(1, 1, 1),
     });
 
     page1.drawText(copy2, {
       x: 70,
-      y: height - x2,
+      y: height - 340,
+      size: copy2Size,
+      color: rgb(82 / 255, 195 / 255, 168 / 255),
+      lineHeight: 15,
+      font: Helvetica,
+      maxWidth: 445,
+    });
+
+    page1.drawText(copy2, {
+      x: 70,
+      y: height - 340,
       size: copy2Size,
       color: rgb(0, 0, 0),
       lineHeight: 15,
