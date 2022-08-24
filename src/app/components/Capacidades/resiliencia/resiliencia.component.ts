@@ -28,7 +28,7 @@ export class ResilienciaComponent implements OnInit {
   copy = this.copys[this.index];
   rptasResiliencia = Array();
   progress = 0.468;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -40,20 +40,20 @@ export class ResilienciaComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasResiliencia[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasResiliencia[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasResiliencia);
       }
     });
   }
 
   continuar() {
-    if (this.rptasResiliencia[this.index - 1] == undefined) {
+    if (this.rptasResiliencia[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasResiliencia);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasResiliencia, 10);
-        this.app.promedioDimension(this.rptasResiliencia, 10);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasResiliencia, 10);
+        this.app.promedioDimension('Resiliencia', this.rptasResiliencia);
         this.app.navegarA('/questionary/tolerancia');
       } else {
         this.opciones.forEach((element, index) => {

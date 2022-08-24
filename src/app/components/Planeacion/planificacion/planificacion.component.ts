@@ -29,7 +29,7 @@ export class PlanificacionComponent implements OnInit {
   copy = this.copys[this.index];
   rptasPlanificacion = Array();
   progress = 0.6552;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
+  constructor(private app: AppComponent) { }
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -41,7 +41,7 @@ export class PlanificacionComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasPlanificacion[this.index - 1] = parseFloat(
+        this.rptasPlanificacion[this.index] = parseFloat(
           event.srcElement.value
         );
         //console.log(this.rptasPlanificacion);
@@ -50,13 +50,13 @@ export class PlanificacionComponent implements OnInit {
   }
 
   continuar() {
-    if (this.rptasPlanificacion[this.index - 1] == undefined) {
+    if (this.rptasPlanificacion[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasPlanificacion);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasPlanificacion, 14);
-        this.app.promedioDimension(this.rptasPlanificacion, 14);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasPlanificacion, 14);
+        this.app.promedioDimension('Planificacion', this.rptasPlanificacion);
         this.app.navegarA('/questionary/evaluacion');
       } else {
         this.opciones.forEach((element, index) => {

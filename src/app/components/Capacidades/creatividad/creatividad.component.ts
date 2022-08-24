@@ -40,20 +40,20 @@ export class CreatividadComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasCreatividad[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasCreatividad[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasCreatividad);
       }
     });
   }
 
   continuar() {
-    if (this.rptasCreatividad[this.index - 1] == undefined) {
+    if (this.rptasCreatividad[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasCreatividad);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasCreatividad, 6);
-        this.app.promedioDimension(this.rptasCreatividad, 6);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasCreatividad, 6);
+        this.app.promedioDimension('Creatividad', this.rptasCreatividad);
         this.app.navegarA('/questionary/oportunidades');
       } else {
         this.opciones.forEach((element, index) => {

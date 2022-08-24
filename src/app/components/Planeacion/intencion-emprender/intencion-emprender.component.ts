@@ -26,7 +26,7 @@ export class IntencionEmprenderComponent implements OnInit {
   copy = this.copys[this.index];
   rptasEmprender = Array();
   progress = 0.6084;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
+  constructor(private app: AppComponent) { }
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -38,7 +38,7 @@ export class IntencionEmprenderComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasEmprender[this.index - 1] = parseFloat(
+        this.rptasEmprender[this.index] = parseFloat(
           event.srcElement.value
         );
         //console.log(this.rptasEmprender);
@@ -47,13 +47,13 @@ export class IntencionEmprenderComponent implements OnInit {
   }
 
   continuar() {
-    if (this.rptasEmprender[this.index - 1] == undefined) {
+    if (this.rptasEmprender[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasEmprender);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasEmprender, 13);
-        this.app.promedioDimension(this.rptasEmprender, 13);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasEmprender, 13);
+        this.app.promedioDimension('Intencion de Emprender', this.rptasEmprender);
         this.app.navegarA('/questionary/planicacion');
       } else {
         this.opciones.forEach((element, index) => {

@@ -28,7 +28,7 @@ export class FlexibilidadComponent implements OnInit {
   copy = this.copys[this.index];
   rptasFlexibilidad = Array();
   progress = 0.3744;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -40,20 +40,20 @@ export class FlexibilidadComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasFlexibilidad[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasFlexibilidad[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasFlexibilidad);
       }
     });
   }
 
   continuar() {
-    if (this.rptasFlexibilidad[this.index - 1] == undefined) {
+    if (this.rptasFlexibilidad[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasFlexibilidad);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasFlexibilidad, 8);
-        this.app.promedioDimension(this.rptasFlexibilidad, 8);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasFlexibilidad, 8);
+        this.app.promedioDimension('Flexibilidad', this.rptasFlexibilidad);
         this.app.navegarA('/questionary/estres');
       } else {
         this.opciones.forEach((element, index) => {

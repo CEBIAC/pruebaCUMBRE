@@ -29,7 +29,7 @@ export class IdentificacionOportunidadesComponent implements OnInit {
   copy = this.copys[this.index]
   rptasOportunidades = Array();
   progress = 0.329;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -41,20 +41,20 @@ export class IdentificacionOportunidadesComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasOportunidades[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasOportunidades[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasOportunidades);
       }
     });
   }
 
   continuar() {
-    if (this.rptasOportunidades[this.index - 1] == undefined) {
+    if (this.rptasOportunidades[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasOportunidades);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasOportunidades, 7);
-        this.app.promedioDimension(this.rptasOportunidades, 7);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasOportunidades, 7);
+        this.app.promedioDimension('Identificacion de Oportunidades', this.rptasOportunidades);
         this.app.navegarA('/questionary/flexibilidad');
       } else {
         this.opciones.forEach((element, index) => {

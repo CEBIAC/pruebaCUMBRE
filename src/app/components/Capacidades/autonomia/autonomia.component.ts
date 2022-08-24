@@ -27,7 +27,7 @@ export class AutonomiaComponent implements OnInit {
   copy = this.copys[this.index];
   rptasAutonomia = Array();
   progress = 0.234;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -39,20 +39,20 @@ export class AutonomiaComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasAutonomia[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasAutonomia[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasAutonomia);
       }
     });
   }
 
   continuar() {
-    if (this.rptasAutonomia[this.index - 1] == undefined) {
+    if (this.rptasAutonomia[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasAutonomia);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasAutonomia, 5);
-        this.app.promedioDimension(this.rptasAutonomia, 5);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasAutonomia, 5);
+        this.app.promedioDimension('Autonomia', this.rptasAutonomia);
         this.app.navegarA('/questionary/creatividad');
       } else {
         this.opciones.forEach((element, index) => {

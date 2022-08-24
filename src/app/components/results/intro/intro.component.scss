@@ -4,6 +4,16 @@
   background-color: #18243e;
   z-index: 0;
 
+  .results {
+    text-align: center;
+    color: #fff;
+    font-size: 5vh;
+    font-family: "Montserrat";
+    font-weight: 600;
+    margin-bottom: 2%;
+    margin-top: 2.8%;
+  }
+
   ion-grid {
     margin: 0;
     padding-top: 1vh;

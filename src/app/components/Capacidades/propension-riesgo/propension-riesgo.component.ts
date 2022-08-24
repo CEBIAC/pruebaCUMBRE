@@ -40,20 +40,20 @@ export class PropensionRiesgoComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasRiesgo[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasRiesgo[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasRiesgo);
       }
     });
   }
 
   continuar() {
-    if (this.rptasRiesgo[this.index - 1] == undefined) {
+    if (this.rptasRiesgo[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasRiesgo);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasRiesgo, 4);
-        this.app.promedioDimension(this.rptasRiesgo, 4);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasRiesgo, 4);
+        this.app.promedioDimension('Propension al Riesgo', this.rptasRiesgo);
         this.app.navegarA('/questionary/autonomia');
       } else {
         this.opciones.forEach((element, index) => {

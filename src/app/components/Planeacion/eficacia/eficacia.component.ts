@@ -26,7 +26,7 @@ export class EficaciaComponent implements OnInit {
   copy = this.copys[this.index];
   rptasEficacia = Array();
   progress = 0.819;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
+  constructor(private app: AppComponent) { }
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -38,7 +38,7 @@ export class EficaciaComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasEficacia[this.index - 1] = parseFloat(
+        this.rptasEficacia[this.index] = parseFloat(
           event.srcElement.value
         );
         //console.log(this.rptasEficacia);
@@ -47,13 +47,13 @@ export class EficaciaComponent implements OnInit {
   }
 
   continuar() {
-    if (this.rptasEficacia[this.index - 1] == undefined) {
+    if (this.rptasEficacia[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasEficacia);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasEficacia, 17);
-        this.app.promedioDimension(this.rptasEficacia, 17);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasEficacia, 17);
+        this.app.promedioDimension('Eficacia', this.rptasEficacia);
         this.app.navegarA('/questionary/relaciones');
       } else {
         this.opciones.forEach((element, index) => {

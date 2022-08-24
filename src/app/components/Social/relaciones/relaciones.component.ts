@@ -26,7 +26,7 @@ export class RelacionesComponent implements OnInit {
   copy = this.copys[this.index];
   rptasRelaciones = Array();
   progress = 0.8658;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
+  constructor(private app: AppComponent) { }
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -38,7 +38,7 @@ export class RelacionesComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasRelaciones[this.index - 1] = parseFloat(
+        this.rptasRelaciones[this.index] = parseFloat(
           event.srcElement.value
         );
         //console.log(this.rptasRelaciones);
@@ -47,13 +47,13 @@ export class RelacionesComponent implements OnInit {
   }
 
   continuar() {
-    if (this.rptasRelaciones[this.index - 1] == undefined) {
+    if (this.rptasRelaciones[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasRelaciones);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasRelaciones, 18);
-        this.app.promedioDimension(this.rptasRelaciones, 18);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasRelaciones, 18);
+        this.app.promedioDimension('Relaciones', this.rptasRelaciones);
         this.app.navegarA('/questionary/equipo');
       } else {
         this.opciones.forEach((element, index) => {

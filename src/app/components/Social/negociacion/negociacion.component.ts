@@ -27,7 +27,7 @@ export class NegociacionComponent implements OnInit {
   copy = this.copys[this.index];
   rptasNegociacion = Array();
   progress = 0.9594;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
+  constructor(private app: AppComponent) { }
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -39,7 +39,7 @@ export class NegociacionComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasNegociacion[this.index - 1] = parseFloat(
+        this.rptasNegociacion[this.index] = parseFloat(
           event.srcElement.value
         );
         //console.log(this.rptasNegociacion);
@@ -48,14 +48,13 @@ export class NegociacionComponent implements OnInit {
   }
 
   continuar() {
-    if (this.rptasNegociacion[this.index - 1] == undefined) {
+    if (this.rptasNegociacion[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasNegociacion);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasNegociacion, 20);
-        this.app.promedioDimension(this.rptasNegociacion, 20);
-        //this.app.navegarA('/results');
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasNegociacion, 20);
+        this.app.promedioDimension('Negociacion', this.rptasNegociacion);
       } else {
         this.opciones.forEach((element, index) => {
           let elmnt: HTMLElement = document.getElementById(element[2]);

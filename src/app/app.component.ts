@@ -1,7 +1,7 @@
+import { SapiolabService } from './services/sapiolab.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './interfaces/user';
-import { SapiolabService } from 'src/app/services/sapiolab.service';
 
 @Component({
   selector: 'app-root',
@@ -9,42 +9,34 @@ import { SapiolabService } from 'src/app/services/sapiolab.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  respuestas = Array(75);
-  respuestasDim = Array();
-  promediosDim = Array();
-  arrPlaneación = Array();
-  arrSocial = Array();
-  Capacidades;
-  Planeación;
-  Social;
-  globalAverage;
-  results;
+  respuestas = Array(75).fill(0);
+  respuestasDim: Array<any> = [];
   objProms = {
-    Autoeficacia: 0,
-    'Locus de control': 0,
-    Optimismo: 0,
-    Persistencia: 0,
-    'Propension al Riesgo': 0,
-    Autonomia: 0,
-    Creatividad: 0,
-    'Identificacion de Oportunidades': 0,
-    Flexibilidad: 0,
-    'Manejo de estres': 0,
-    Resiliencia: 10,
-    'Tolerancia a la frustracion': 10,
-    'Orientacion al logro': 10,
-    'Intencion de Emprender': 10,
-    Planificacion: 10,
-    Evaluacion: 10,
-    Eficiencia: 10,
-    Eficacia: 10,
-    Relaciones: 10,
-    'Trabajo en equipo': 10,
-    Negociacion: 20,
-    Capacidades: 20,
-    Planeacion: 20,
-    Social: 20,
-    Global: 20,
+    Autoeficacia: '0',
+    'Locus de control': '0',
+    Optimismo: '0',
+    Persistencia: '0',
+    'Propension al Riesgo': '0',
+    Autonomia: '0',
+    Creatividad: '0',
+    'Identificacion de Oportunidades': '0',
+    Flexibilidad: '0',
+    'Manejo de estres': '0',
+    Resiliencia: '0',
+    'Tolerancia a la frustracion': '0',
+    'Orientacion al logro': '0',
+    'Intencion de Emprender': '0',
+    Planificacion: '0',
+    Evaluacion: '0',
+    Eficiencia: '0',
+    Eficacia: '0',
+    Relaciones: '0',
+    'Trabajo en equipo': '0',
+    Negociacion: '0',
+    Capacidades: '0',
+    Planeacion: '0',
+    Social: '0',
+    Global: '0',
   };
   user: User;
 
@@ -52,28 +44,47 @@ export class AppComponent {
     if (sessionStorage.getItem('respuestas')) {
       this.respuestasDim = JSON.parse(sessionStorage.getItem('respuestas'));
     }
+
+    if (sessionStorage.getItem('promedios')) {
+      this.objProms = JSON.parse(sessionStorage.getItem('promedios'));
+    }
   }
 
-  respuestasDimsension(arr, index) {
+  respuestasDimension(arr, index) {
     this.respuestasDim[index] = arr;
     sessionStorage.setItem('respuestas', JSON.stringify(this.respuestasDim));
     console.log(this.respuestasDim);
   }
 
   promedioDimension(key, array) {
-    let dividend = key == 'Planificacion' ? 6 : 4
+    let dividend = key == 'Planificacion' ? 6 : 4;
     const reducer = (prev, curr) => prev + curr;
-    this.objProms[key] = String((array.reduce(reducer) / dividend).toFixed(2));
-    console.log(this.arrPlaneación);
+    this.objProms[key] = (array.reduce(reducer) / dividend).toFixed(2);
+    sessionStorage.setItem('promedios', JSON.stringify(this.objProms));
+
+    if (key == 'Negociacion') {
+      this.respuestas = this.respuestas.concat.apply([], this.respuestasDim);
+      console.log(this.respuestas);
+      let capacidades = this.respuestas.slice(0, 12);
+      let planeacion = this.respuestas.slice(12, 18);
+      let social = this.respuestas.slice(18, 21);
+      this.objProms.Capacidades = (capacidades.reduce(reducer) / 12).toFixed(2);
+      this.objProms.Planeacion = (planeacion.reduce(reducer) / 6).toFixed(2);
+      this.objProms.Social = (social.reduce(reducer) / 3).toFixed(2);
+      this.objProms.Global = (this.respuestas.reduce(reducer) / 22).toFixed(2);
+      sessionStorage.setItem('promedios', JSON.stringify(this.objProms));
+      this.saveResults(this.respuestas, this.objProms);
+    }
   }
 
-  saveResults(answers, dimension, capacidades, planeacion, social, Average) {
-    dimension.push(capacidades, planeacion, social, Average);
-    console.log('dimension:', dimension);
+  saveResults(respuestas, promedios) {
+    console.log('respuestas:', respuestas);
+    console.log('promedios:', promedios);
     if (sessionStorage.getItem('user')) {
       this.user = JSON.parse(sessionStorage.getItem('user'));
-      this.user.respuestas = JSON.stringify(answers);
-      this.user.resultados = JSON.stringify(dimension);
+      this.user.respuestas = JSON.stringify(respuestas);
+      this.user.resultados = JSON.stringify(promedios);
+      sessionStorage.setItem('user', JSON.stringify(this.user));
       this.sapiolab.saveResults(this.user);
     } else {
       alert('Error almacenando datos');

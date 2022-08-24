@@ -26,7 +26,7 @@ export class EvaluacionComponent implements OnInit {
   copy = this.copys[this.index];
   rptasEvaluacion = Array();
   progress = 0.722;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
+  constructor(private app: AppComponent) { }
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -38,7 +38,7 @@ export class EvaluacionComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasEvaluacion[this.index - 1] = parseFloat(
+        this.rptasEvaluacion[this.index] = parseFloat(
           event.srcElement.value
         );
         //console.log(this.rptasEvaluacion);
@@ -47,13 +47,13 @@ export class EvaluacionComponent implements OnInit {
   }
 
   continuar() {
-    if (this.rptasEvaluacion[this.index - 1] == undefined) {
+    if (this.rptasEvaluacion[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasEvaluacion);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasEvaluacion, 15);
-        this.app.promedioDimension(this.rptasEvaluacion, 15);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasEvaluacion, 15);
+        this.app.promedioDimension('Evaluacion', this.rptasEvaluacion);
         this.app.navegarA('/questionary/eficiencia');
       } else {
         this.opciones.forEach((element, index) => {

@@ -28,7 +28,7 @@ export class ManejoEstresComponent implements OnInit {
   copy = this.copys[this.index];
   rptasEstres = Array();
   progress = 0.4212;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -40,7 +40,7 @@ export class ManejoEstresComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasEstres[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasEstres[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasEstres);
       }
     });
@@ -51,9 +51,9 @@ export class ManejoEstresComponent implements OnInit {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasEstres);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasEstres, 9);
-        this.app.promedioDimension(this.rptasEstres, 9);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasEstres, 9);
+        this.app.promedioDimension('Manejo de estres', this.rptasEstres);
         this.app.navegarA('/questionary/resiliencia');
       } else {
         this.opciones.forEach((element, index) => {

@@ -28,7 +28,7 @@ export class OlogroComponent implements OnInit {
   copy = this.copys[this.index];
   rptasLogro = Array();
   progress = 0.5616;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -40,20 +40,20 @@ export class OlogroComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasLogro[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasLogro[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasLogro);
       }
     });
   }
 
   continuar() {
-    if (this.rptasLogro[this.index - 1] == undefined) {
+    if (this.rptasLogro[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasLogro);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasLogro, 12);
-        this.app.promedioDimension(this.rptasLogro, 12);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasLogro, 12);
+        this.app.promedioDimension('Orientacion al logro', this.rptasLogro);
         this.app.navegarA('/questionary/emprender');
       } else {
         this.opciones.forEach((element, index) => {

@@ -119,6 +119,11 @@ const routes: Routes = [
         redirectTo: '/questionary/autoeficacia',
         pathMatch: 'full',
       },
+      {
+        path: '**',
+        redirectTo: '/questionary/autoeficacia',
+        pathMatch: 'full',
+      },
     ],
   },
 ];

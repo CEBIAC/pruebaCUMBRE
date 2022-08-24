@@ -48,7 +48,7 @@ export class AutoeficaciaComponent implements OnInit {
     } else {
       console.log(this.rptasAuto);
       if (this.index == this.copys.length - 1) {
-        this.app.respuestasDimsension(this.rptasAuto, 0);
+        this.app.respuestasDimension(this.rptasAuto, 0);
         this.app.promedioDimension('Autoeficacia', this.rptasAuto);
         this.app.navegarA('/questionary/control');
       } else {

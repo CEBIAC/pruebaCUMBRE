@@ -28,7 +28,7 @@ export class ToleranciaFrustracionComponent implements OnInit {
   copy = this.copys[this.index];
   rptasTolerancia = Array();
   progress = 0.5148;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) { }
+  constructor(private app: AppComponent) { }
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -40,20 +40,20 @@ export class ToleranciaFrustracionComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasTolerancia[this.index - 1] = parseFloat(event.srcElement.value);
+        this.rptasTolerancia[this.index] = parseFloat(event.srcElement.value);
         //console.log(this.rptasTolerancia);
       }
     });
   }
 
   continuar() {
-    if (this.rptasTolerancia[this.index - 1] == undefined) {
+    if (this.rptasTolerancia[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
       //console.log(this.rptasTolerancia);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasTolerancia, 11);
-        this.app.promedioDimension(this.rptasTolerancia, 11);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasTolerancia, 11);
+        this.app.promedioDimension('Tolerancia a la frustracion', this.rptasTolerancia);
         this.app.navegarA('/questionary/logro');
       } else {
         this.opciones.forEach((element, index) => {

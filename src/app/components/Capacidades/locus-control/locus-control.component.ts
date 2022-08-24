@@ -48,8 +48,8 @@ export class LocusControlComponent implements OnInit {
     } else {
       console.log(this.rptasAuto);
       if (this.index == this.copys.length - 1) {
-        this.app.respuestasDimsension(this.rptasAuto, 0);
-        this.app.promedioDimension('Autoeficacia', this.rptasAuto);
+        this.app.respuestasDimension(this.rptasAuto, 1);
+        this.app.promedioDimension('Locus de control', this.rptasAuto);
         this.app.navegarA('/questionary/optimismo');
       } else {
         this.opciones.forEach((element, index) => {

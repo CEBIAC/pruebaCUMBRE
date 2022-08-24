@@ -24,7 +24,7 @@ export class OptimismoComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
-  rptasAuto = Array();
+  rptasOpt = Array();
   progress = 0.0963;
 
   constructor(private app: AppComponent) {}
@@ -39,20 +39,20 @@ export class OptimismoComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasAuto[this.index - 1] = parseFloat(event.srcElement.value);
-       //console.log(this.rptasAuto);
+        this.rptasOpt[this.index] = parseFloat(event.srcElement.value);
+        console.log(this.rptasOpt);
       }
     });
   }
 
   continuar() {
-        if (this.rptasAuto[this.index] == undefined) {
+    if (this.rptasOpt[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasAuto);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasAuto, 2);
-        this.app.promedioDimension(this.rptasAuto, 2);
+      //console.log(this.rptasOpt);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasOpt, 2);
+        this.app.promedioDimension('Optimismo', this.rptasOpt);
         this.app.navegarA('/questionary/persistencia');
       } else {
         this.opciones.forEach((element, index) => {

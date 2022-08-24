@@ -48,6 +48,11 @@ const routes: Routes = [
         (m) => m.InstResutsPageModule
       ),
   },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

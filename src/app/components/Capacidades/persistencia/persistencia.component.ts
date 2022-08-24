@@ -25,9 +25,9 @@ export class PersistenciaComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
-  rptasControl = Array();
+  rptasPersistencia = Array();
   progress = 0.14;
-  constructor(private app: AppComponent, private adap: QuestionaryPage) {}
+  constructor(private app: AppComponent) {}
 
   seleccionar(event) {
     this.opciones.forEach((element, index) => {
@@ -39,20 +39,22 @@ export class PersistenciaComponent implements OnInit {
           event.srcElement.id
         );
         select.className = 'actived';
-        this.rptasControl[this.index - 1] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasControl);
+        this.rptasPersistencia[this.index] = parseFloat(
+          event.srcElement.value
+        );
+        console.log(this.rptasPersistencia);
       }
     });
   }
 
   continuar() {
-    if (this.rptasControl[this.index - 1] == undefined) {
+    if (this.rptasPersistencia[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasControl);
-      if (this.index == 0 + this.copys.length) {
-        this.app.respuestasDimsension(this.rptasControl, 3);
-        this.app.promedioDimension(this.rptasControl, 3);
+      //console.log(this.rptasPersistencia);
+      if (this.index == this.copys.length - 1) {
+        this.app.respuestasDimension(this.rptasPersistencia, 3);
+        this.app.promedioDimension('Persistencia', this.rptasPersistencia);
         this.app.navegarA('/questionary/riesgo');
       } else {
         this.opciones.forEach((element, index) => {
