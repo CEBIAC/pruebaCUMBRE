@@ -14,6 +14,7 @@ export class PdfService {
     const Helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
     const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
 
+    // PAGINA 1 -----------------------------------------------------------------------------
     // Add a blank page1 to the document
     const page1 = pdfDoc.addPage();
 
@@ -22,12 +23,8 @@ export class PdfService {
     console.log(page1.getSize());
 
     // Draw a string of text toward the top of the page1
-    const TitlefontSize = 30;
-
     const pngUrl = '/assets/results/FondoResults.png';
-
     const pngImageBytes = await fetch(pngUrl).then((res) => res.arrayBuffer());
-
     const pngImage = await pdfDoc.embedPng(pngImageBytes);
 
     // const pngDims = pngImage.scale(1);
@@ -151,6 +148,22 @@ export class PdfService {
       lineHeight: 15,
       font: Helvetica,
       maxWidth: 445,
+    });
+
+    // PAGINA 2 -----------------------------------------------------------------------------
+    // Add a blank page1 to the document
+    const page2 = pdfDoc.addPage();
+    const pngUrl2 = '/assets/results/FondoResults2.png';
+    const pngImageBytes2 = await fetch(pngUrl2).then((res) => res.arrayBuffer());
+    const pngImage2 = await pdfDoc.embedPng(pngImageBytes2);
+
+    // const pngDims = pngImage.scale(1);
+
+    page2.drawImage(pngImage2, {
+      x: 0,
+      y: 0,
+      width: width + 20,
+      height: height + 20,
     });
 
     // Serialize the PDFDocument to bytes (a Uint8Array)
