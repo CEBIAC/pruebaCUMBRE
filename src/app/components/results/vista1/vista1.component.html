@@ -34,7 +34,7 @@
           </ion-row>
         </ion-col>
         <ion-col size-md="6" size="12" class="ion-padding">
-          <div id="puntuacion-radar-global">
+          <div class="puntuacion-radar-global" id="chart1">
             <canvas #barChart4></canvas>
           </div>
         </ion-col>
@@ -56,7 +56,7 @@
       </ion-row>
       <ion-row>
         <ion-col size-md="5.5" size="12" class="radar">
-          <div class="puntuacion-radar">
+          <div class="puntuacion-radar" id="chart2">
             <canvas #barChart></canvas>
           </div>
         </ion-col>
@@ -110,7 +110,7 @@
       </ion-row>
       <ion-row>
         <ion-col size-md="5.5" size="12" class="radar">
-          <div class="puntuacion-radar">
+          <div class="puntuacion-radar" id="chart3">
             <canvas #barChart2></canvas>
           </div>
         </ion-col>
@@ -166,7 +166,7 @@
       </ion-row>
       <ion-row>
         <ion-col size-md="5.5" size="12" class="radar">
-          <div class="puntuacion-radar">
+          <div class="puntuacion-radar" id="chart4">
             <canvas #barChart3></canvas>
           </div>
         </ion-col>
@@ -209,7 +209,7 @@
     <ion-row>
       <ion-col size="12">
         <ion-button
-          (click)="descargarPDF()"
+          (click)="getScreenshots()"
           color="cumbrepurple"
           class="buttonAdvanced"
           >Descargar PDF

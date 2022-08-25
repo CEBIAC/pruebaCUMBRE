@@ -966,42 +966,44 @@ export class Vista1Component implements OnInit, AfterViewInit {
   }
 
   getScreenshots() {
-    const node = document.getElementById('containerResults');
-    
-    html2canvas(node, {
-      width: node.scrollWidth,
-      height: node.scrollHeight,
-      scrollX: -window.scrollX,
-      scrollY: -window.scrollY,
-      scale: 3,
-      imageTimeout: 1500,
-      backgroundColor: 'rgb(225,225,251)',
-      ignoreElements: (element: any) => {
-        if ('btnResult' == element.id) {
-          return true;
-        }
-      },
-    }).then((canvas: any) => {
-      const imgWidth = 210;
-      const pageHeight = 290;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
+    // let base64 = [];
+    // const sc = [
+    //   document.getElementById('containerResults'),
+    //   document.getElementById('chart2'),
+    //   document.getElementById('chart3'),
+    //   document.getElementById('chart4'),
+    // ];
 
-      let position = 0;
-      const pageData = canvas.toDataURL('image/jpeg', 1.0);
+    // sc.forEach((element) => {
+    //   html2canvas(element, {
+    //     width: element.scrollWidth,
+    //     height: element.scrollHeight,
+    //     scrollX: -window.scrollX,
+    //     scrollY: -window.scrollY,
+    //     scale: 3,
+    //     imageTimeout: 1500,
+    //     backgroundColor: 'rgb(255, 255, 255)',
+    //   }).then((canvas: any) => {
+    //     const pageData = canvas.toDataURL('image/jpeg', 1.0);
+    //     base64[base64.length] = pageData;
+    //     console.log(base64);
 
-      const imgData = encodeURIComponent(pageData);
-      console.log(pageData)
-    });
+    //     if (base64.length == 4) {
+    //       this.descargarPDF(base64)
+    //     }
+    //   });
+    // });
   }
 
-  descargarPDF() {
-    this.getScreenshots();
+  descargarPDF(screenShots: Array<any>) {
     // this.pdfService.generarPDF(
     //   this.name,
     //   this.date,
     //   this.copys,
-    //   this.copyGlobal
+    //   this.copyGlobal,
+    //   screenShots
     // );
+
+    this.pdfService.generarPDF()
   }
 }
