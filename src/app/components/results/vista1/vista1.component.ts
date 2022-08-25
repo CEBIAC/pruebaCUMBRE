@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 import { User } from 'src/app/interfaces/user';
 import { PdfService } from 'src/app/services/pdf.service';
+import { NgxCaptureService } from 'ngx-capture';
+import { tap } from 'rxjs/operators';
+import html2canvas from 'html2canvas';
+
 Chart.register(...registerables);
 
 @Component({
@@ -12,10 +16,10 @@ Chart.register(...registerables);
   styleUrls: ['./vista1.component.scss'],
 })
 export class Vista1Component implements OnInit, AfterViewInit {
-  @ViewChild('barChart') barChart;
-  @ViewChild('barChart2') barChart2;
-  @ViewChild('barChart3') barChart3;
-  @ViewChild('barChart4') barChart4;
+  @ViewChild('barChart', { static: true }) barChart: any;
+  @ViewChild('barChart2', { static: true }) barChart2: any;
+  @ViewChild('barChart3', { static: true }) barChart3: any;
+  @ViewChild('barChart4', { static: true }) barChart4: any;
   promedios;
   name;
   date;
@@ -48,7 +52,7 @@ export class Vista1Component implements OnInit, AfterViewInit {
 
   copyGlobal;
   copysCapacidades;
-  copysPlaneacion
+  copysPlaneacion;
   copysHabilidades;
 
   positionCopyCapacidades = 0;
@@ -62,7 +66,11 @@ export class Vista1Component implements OnInit, AfterViewInit {
 
   user: User;
 
-  constructor(private router: Router, private pdfService: PdfService) {}
+  constructor(
+    private router: Router,
+    private pdfService: PdfService,
+    private captureService: NgxCaptureService
+  ) {}
 
   ngOnInit() {
     this.name = sessionStorage.getItem('nameRepo');
@@ -957,7 +965,43 @@ export class Vista1Component implements OnInit, AfterViewInit {
     this.router.navigate(['/results/vista2']);
   }
 
+  getScreenshots() {
+    const node = document.getElementById('containerResults');
+    
+    html2canvas(node, {
+      width: node.scrollWidth,
+      height: node.scrollHeight,
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+      scale: 3,
+      imageTimeout: 1500,
+      backgroundColor: 'rgb(225,225,251)',
+      ignoreElements: (element: any) => {
+        if ('btnResult' == element.id) {
+          return true;
+        }
+      },
+    }).then((canvas: any) => {
+      const imgWidth = 210;
+      const pageHeight = 290;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+      const pageData = canvas.toDataURL('image/jpeg', 1.0);
+
+      const imgData = encodeURIComponent(pageData);
+      console.log(pageData)
+    });
+  }
+
   descargarPDF() {
-    this.pdfService.generarPDF(this.name, this.date, this.copys, this.copyGlobal);
+    this.getScreenshots();
+    // this.pdfService.generarPDF(
+    //   this.name,
+    //   this.date,
+    //   this.copys,
+    //   this.copyGlobal
+    // );
   }
 }

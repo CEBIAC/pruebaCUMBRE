@@ -10,7 +10,6 @@ import { SapiolabService } from 'src/app/services/sapiolab.service';
 export class InstResutsPage implements OnInit {
   stateSelect = false;
   stateDefaultSelect = false;
-
   cc: any;
   usuario = this.formBuilder.group({
     documento: [

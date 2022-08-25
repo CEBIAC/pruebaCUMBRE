@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { NgxCaptureModule } from 'ngx-capture';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    NgxCaptureModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

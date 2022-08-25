@@ -8,15 +8,22 @@ import { SapiolabService } from 'src/app/services/sapiolab.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private sapiolab: SapiolabService,
-    private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private sapiolab: SapiolabService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    sessionStorage.clear()
+  }
 
   //Metodo para enviar a terms
   empezar() {
-    this.route.queryParams.subscribe((params) => {
-      const query = params;
-      this.sapiolab.checkQuery(query);
-    }).unsubscribe();
+    this.route.queryParams
+      .subscribe((params) => {
+        const query = params;
+        this.sapiolab.checkQuery(query);
+      })
+      .unsubscribe();
     //this.router.navigateByUrl('/terms');
   }
 

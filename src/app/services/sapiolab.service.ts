@@ -102,6 +102,7 @@ export class SapiolabService {
 
     if (search.length != 0) {
       if (search.length == 1) {
+        sessionStorage.setItem('user', JSON.stringify(search[0]))
         sessionStorage.setItem('resultadosRepo', search[0].resultados)
         sessionStorage.setItem('nameRepo', search[0].nombre);
         sessionStorage.setItem('dateRepo', search[0].fecha);
