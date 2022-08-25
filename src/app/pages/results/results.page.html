@@ -36,13 +36,16 @@
   </ion-grid>
 </ion-content>
 <ion-content id="reporte" *ngIf="sections==0">
-  <p class="results">RESULTADOS</p>
+  
+  
   <ion-grid>
+    <div id="parte1">
+    <p class="results">RESULTADOS</p>
     <!--Row con PERFIL GLOBAL-->
-    <div class="containerResults">
+    <div class="containerResults" >
       <ion-row class="enunciado">
         <ion-col size="12">
-          <p class="enunciadoCard"><b>Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+          <p class="enunciadoCard"><b>1, así conocerás tu puntaje y la
               retroelimentación que preparamos
               para tí.</b>
           </p>
@@ -65,13 +68,15 @@
         </ion-col>
       </ion-row>
     </div>
+  </div>
+    <div id="parte2">
 
     <p class="Title">Capacidades para el emprendimiento</p>
     <!--Row con dimensiones para el emprendimiento-->
     <div class="containerResults">
       <ion-row class="enunciado">
         <ion-col size="12">
-          <p class="enunciadoCard"><b>Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+          <p class="enunciadoCard"><b>2, así conocerás tu puntaje y la
               retroelimentación que preparamos para tí.</b>
           </p>
         </ion-col>
@@ -104,13 +109,14 @@
         </ion-col>
       </ion-row>
     </div>
-
+  </div>
+<div id="parte3">
     <p class="Title">Planeación</p>
     <!--Row planeación-->
     <div class="containerResults">
       <ion-row class="enunciado">
         <ion-col size="12">
-          <p class="enunciadoCard"><b>Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+          <p class="enunciadoCard"><b>3, así conocerás tu puntaje y la
               retroelimentación que preparamos para tí..</b>
           </p>
         </ion-col>
@@ -144,13 +150,14 @@
         </ion-col>
       </ion-row>
     </div>
-
+  </div>
+<div id="parte4">
     <p class="Title">Habilidades sociales</p>
     <!--Row planeación-->
     <div class="containerResults">
       <ion-row class="enunciado">
         <ion-col size="12">
-          <p class="enunciadoCard"><b>Ubica el cursor sobre la dimensión, así conocerás tu puntaje y la
+          <p class="enunciadoCard"><b>4, así conocerás tu puntaje y la
               retroelimentación que preparamos para tí..</b>
           </p>
         </ion-col>
@@ -183,13 +190,15 @@
         </ion-col>
       </ion-row>
     </div>
+  </div>
     <!--Row con botón-->
     <ion-row>
       <ion-col size="12">
-        <ion-button (click)="goNext()" fill="clear">
-          <img id="btnSiguiente" src="../../../assets/instructions/btnSiguienteO.png" alt="">
+        <ion-button (click)="downloadPDF()" fill="clear">
+          <img id="btnDescargar" src="../../../assets/instructions/btnSiguienteO.png" alt="">
         </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
