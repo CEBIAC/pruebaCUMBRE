@@ -7,6 +7,7 @@ import { PdfService } from 'src/app/services/pdf.service';
 import { NgxCaptureService } from 'ngx-capture';
 import { tap } from 'rxjs/operators';
 import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 Chart.register(...registerables);
 
@@ -966,6 +967,46 @@ export class Vista1Component implements OnInit, AfterViewInit {
   }
 
   getScreenshots() {
+    const node = document.getElementById('resultado');
+
+    html2canvas(node, {
+      width: node.scrollWidth,
+      height: node.scrollHeight,
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+      scale: 3,
+      imageTimeout: 1500,
+      backgroundColor: 'rgb(225,225,251)',
+      ignoreElements: (element: any) => {
+        if ('btnResult' == element.id) {
+          return true;
+        }
+      },
+    }).then((canvas: any) => {
+      const imgWidth = 210;
+      const pageHeight = 290;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      const doc = new jsPDF('p', 'mm');
+      let position = 0;
+      const pageData = canvas.toDataURL('image/jpeg', 1.0);
+
+      const imgData = encodeURIComponent(pageData);
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      doc.setDrawColor(255, 255, 255);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      doc.save('resultado-test-estilos-de-aprendizaje.pdf');
+    });
+
     // let base64 = [];
     // const sc = [
     //   document.getElementById('containerResults'),
@@ -1004,6 +1045,6 @@ export class Vista1Component implements OnInit, AfterViewInit {
     //   screenShots
     // );
 
-    this.pdfService.generarPDF()
+    this.pdfService.generarPDF();
   }
 }
