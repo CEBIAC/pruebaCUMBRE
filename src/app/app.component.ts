@@ -53,7 +53,7 @@ export class AppComponent {
   respuestasDimension(arr, index) {
     this.respuestasDim[index] = arr;
     sessionStorage.setItem('respuestas', JSON.stringify(this.respuestasDim));
-    console.log(this.respuestasDim);
+    // console.log(this.respuestasDim);
   }
 
   promedioDimension(key, array) {
@@ -64,7 +64,7 @@ export class AppComponent {
 
     if (key == 'Negociacion') {
       this.respuestas = this.respuestas.concat.apply([], this.respuestasDim);
-      console.log(this.respuestas);
+      // console.log(this.respuestas);
       let capacidades = this.respuestas.slice(0, 12);
       let planeacion = this.respuestas.slice(12, 18);
       let social = this.respuestas.slice(18, 21);
@@ -78,8 +78,8 @@ export class AppComponent {
   }
 
   saveResults(respuestas, promedios) {
-    console.log('respuestas:', respuestas);
-    console.log('promedios:', promedios);
+    // console.log('respuestas:', respuestas);
+    // console.log('promedios:', promedios);
     if (sessionStorage.getItem('user')) {
       this.user = JSON.parse(sessionStorage.getItem('user'));
       this.user.respuestas = JSON.stringify(respuestas);

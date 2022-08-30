@@ -1,3 +1,4 @@
+import { Vista1Component } from 'src/app/components/results/vista1/vista1.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,6 @@ import { ResultsPage } from './results.page';
     IonicModule,
     ResultsPageRoutingModule
   ],
-  declarations: [ResultsPage]
+  declarations: [ResultsPage, Vista1Component]
 })
 export class ResultsPageModule {}

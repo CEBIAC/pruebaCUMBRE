@@ -82,6 +82,29 @@ ion-grid {
             transition: all 0.2s ease-in-out;
           }
 
+          #opt1.opt1act,
+          #opt2.opt2act {
+            width: 93px;
+            height: 93px;
+            background: url("/assets/triangles/T2.png") -10px -10px;
+            color: #ffff;
+          }
+
+          #opt3.opt3act {
+            width: 92px;
+            height: 93px;
+            background: url("/assets/triangles/T22.png") -10px -10px;
+            color: #ffff;
+          }
+
+          #opt4.opt4act,
+          #opt5.opt5act {
+            width: 93px;
+            height: 93px;
+            background: url("/assets/triangles/T31.png") -10px -10px;
+            color: #ffff;
+          }
+          
           #opt1,
           #opt2 {
             width: 93px;

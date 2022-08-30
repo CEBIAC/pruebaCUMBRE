@@ -8,7 +8,6 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./manejo-estres.component.scss'],
 })
 export class ManejoEstresComponent implements OnInit {
-
   copys = [
     'En los momentos cuando discuto con mis amigos, prefiero respirar y retomar la conversación cuando esté calmado.',
     'No logro solucionar problemas, ni trabajar cuando alguien está esperando los resultados.',
@@ -26,49 +25,34 @@ export class ManejoEstresComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasEstres = Array();
   progress = 0.4212;
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasEstres[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasEstres);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasEstres[this.index] = parseFloat(event.srcElement.value);
+    // console.log(this.rptasEstres)
   }
 
   continuar() {
     if (this.rptasEstres[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasEstres);
+      // console.log(this.rptasEstres);
       if (this.index == this.copys.length - 1) {
         this.app.respuestasDimension(this.rptasEstres, 9);
         this.app.promedioDimension('Manejo de estres', this.rptasEstres);
         this.app.navegarA('/questionary/resiliencia');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
 }

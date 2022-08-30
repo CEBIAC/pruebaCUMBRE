@@ -7,7 +7,6 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./creatividad.component.scss'],
 })
 export class CreatividadComponent implements OnInit {
-
   copys = [
     'Me cuesta trabajo generar ideas innovadoras que me permitan estar por encima de la competencia.',
     'Me gusta poner a prueba mi imaginación experimentando constantemente con nuevas combinaciones de ideas.',
@@ -25,25 +24,16 @@ export class CreatividadComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasCreatividad = Array();
   progress = 0.282;
 
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasCreatividad[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasCreatividad);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasCreatividad[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasCreatividad)
   }
 
   continuar() {
@@ -56,19 +46,13 @@ export class CreatividadComponent implements OnInit {
         this.app.promedioDimension('Creatividad', this.rptasCreatividad);
         this.app.navegarA('/questionary/oportunidades');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
 }

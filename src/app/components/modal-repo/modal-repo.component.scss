@@ -1,0 +1,41 @@
+ion-content {
+  overflow-y: auto;
+  height: 100%;
+  ion-grid {
+    height: 100%;
+    background-image: url("/assets/results/FondoResults.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .repos {
+      border-radius: 10px;
+      background-color: white;
+
+      ion-col {
+        border-bottom: 1px solid #d6d6d6;
+      }
+
+      p {
+        margin: 2px 0;
+      }
+
+      ion-icon {
+        font-size: 25px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.h1Top {
+  text-align: center;
+  border-radius: 10px;
+  background-color: #5b0060;
+  color: #fff;
+  padding: 15px;
+  font-size: 25px;
+  width: max-content;
+  max-width: 90%;
+  font-family: "Throw", sans-serif;
+  margin: auto;
+}

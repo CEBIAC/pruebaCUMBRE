@@ -8,7 +8,6 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./tolerancia-frustracion.component.scss'],
 })
 export class ToleranciaFrustracionComponent implements OnInit {
-
   copys = [
     'Si me percato que algo está saliendo mal con mi proyecto, asumo con tranquilidad la carga de resolverlo a pesar de sentirme desanimado.',
     'Normalmente en una situación negativa, controlo mis emociones y actúo con cabeza fría.',
@@ -26,24 +25,15 @@ export class ToleranciaFrustracionComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasTolerancia = Array();
   progress = 0.5148;
-  constructor(private app: AppComponent) { }
+  constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasTolerancia[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasTolerancia);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasTolerancia[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasTolerancia)
   }
 
   continuar() {
@@ -53,22 +43,19 @@ export class ToleranciaFrustracionComponent implements OnInit {
       //console.log(this.rptasTolerancia);
       if (this.index == this.copys.length - 1) {
         this.app.respuestasDimension(this.rptasTolerancia, 11);
-        this.app.promedioDimension('Tolerancia a la frustracion', this.rptasTolerancia);
+        this.app.promedioDimension(
+          'Tolerancia a la frustracion',
+          this.rptasTolerancia
+        );
         this.app.navegarA('/questionary/logro');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
 }

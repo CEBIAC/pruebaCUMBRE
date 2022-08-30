@@ -1,3 +1,4 @@
+import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./intro.component.scss'],
 })
 export class IntroComponent implements OnInit {
+  constructor(private router: Router, private loadingCtrl: LoadingController) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {}
-
-  goNext(){
-    this.router.navigate(['/results/vista1'])
+  ngOnInit() {
+    this.loadingCtrl.dismiss();
   }
 
+  goNext() {
+    this.router.navigate(['/results/vista1']);
+  }
 }

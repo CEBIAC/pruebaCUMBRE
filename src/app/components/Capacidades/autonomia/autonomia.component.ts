@@ -25,24 +25,15 @@ export class AutonomiaComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasAutonomia = Array();
   progress = 0.234;
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasAutonomia[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasAutonomia);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasAutonomia[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasAutonomia)
   }
 
   continuar() {
@@ -55,15 +46,10 @@ export class AutonomiaComponent implements OnInit {
         this.app.promedioDimension('Autonomia', this.rptasAutonomia);
         this.app.navegarA('/questionary/creatividad');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }

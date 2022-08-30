@@ -8,11 +8,12 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./eficacia.component.scss'],
 })
 export class EficaciaComponent implements OnInit {
-
-  copys = ['Resultados de alta calidad son preferibles a resultados numerosos.',
+  copys = [
+    'Resultados de alta calidad son preferibles a resultados numerosos.',
     'Presto atención a cada detalle de los procesos que llevo.',
     'Cumplo mis objetivos con resultados sobresalientes.',
-    'Si hay escasos recursos es mejor lograr pocos productos perfectos o varios de poca calidad.'];
+    'Si hay escasos recursos es mejor lograr pocos productos perfectos o varios de poca calidad.',
+  ];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -24,26 +25,15 @@ export class EficaciaComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasEficacia = Array();
   progress = 0.819;
-  constructor(private app: AppComponent) { }
+  constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasEficacia[this.index] = parseFloat(
-          event.srcElement.value
-        );
-        //console.log(this.rptasEficacia);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasEficacia[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasEficacia)
   }
 
   continuar() {
@@ -56,20 +46,13 @@ export class EficaciaComponent implements OnInit {
         this.app.promedioDimension('Eficacia', this.rptasEficacia);
         this.app.navegarA('/questionary/relaciones');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
-
 }

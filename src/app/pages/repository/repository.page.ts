@@ -3,11 +3,11 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SapiolabService } from 'src/app/services/sapiolab.service';
 @Component({
-  selector: 'app-inst-resuts',
-  templateUrl: './inst-resuts.page.html',
-  styleUrls: ['./inst-resuts.page.scss'],
+  selector: 'app-repository',
+  templateUrl: './repository.page.html',
+  styleUrls: ['./repository.page.scss'],
 })
-export class InstResutsPage implements OnInit {
+export class RepositoryPage implements OnInit {
   stateSelect = false;
   stateDefaultSelect = false;
   cc: any;
@@ -25,16 +25,12 @@ export class InstResutsPage implements OnInit {
   ) {}
 
   ngOnInit() {}
-  async guardarDatos(login: any) {
+
+  search() {
     if (this.usuario.value.documento == undefined) {
       alert('Ingresa un número de identificación');
     } else {
       this.sapiolab.checkRepo(this.usuario.value.documento);
-      sessionStorage.setItem(
-        'idRepo',
-        JSON.stringify(this.usuario.value.documento)
-      );
-      //this.router.navigateByUrl('/instructions');
     }
   }
 }

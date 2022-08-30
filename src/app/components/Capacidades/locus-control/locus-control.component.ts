@@ -25,42 +25,32 @@ export class LocusControlComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasAuto = Array();
   progress = 0.0468;
 
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        this.rptasAuto[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasAuto);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasAuto[this.index] = parseFloat(event.srcElement.value);
+    // console.log(this.rptasAuto)
   }
 
   continuar() {
     if (this.rptasAuto[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      console.log(this.rptasAuto);
+      // console.log(this.rptasAuto);
       if (this.index == this.copys.length - 1) {
         this.app.respuestasDimension(this.rptasAuto, 1);
         this.app.promedioDimension('Locus de control', this.rptasAuto);
         this.app.navegarA('/questionary/optimismo');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }

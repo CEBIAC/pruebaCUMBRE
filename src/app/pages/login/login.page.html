@@ -59,7 +59,7 @@
           type="submit"
           (click)="guardarDatos(login)"
           class="buttonAdvanced"
-          [disabled]="!usuario.valid"
+          [disabled]="usuario.invalid"
           color="cumbregreen"
           >Siguiente
         </ion-button>

@@ -8,7 +8,6 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./flexibilidad.component.scss'],
 })
 export class FlexibilidadComponent implements OnInit {
-
   copys = [
     'Puedo amoldarme casi a cualquier situación que se presente sin problema.',
     'Prefiero seguir reglas concretas y bien establecidas que asumir procesos inciertos y desestructurados.',
@@ -26,45 +25,31 @@ export class FlexibilidadComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasFlexibilidad = Array();
   progress = 0.3744;
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasFlexibilidad[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasFlexibilidad);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasFlexibilidad[this.index] = parseFloat(event.srcElement.value);
+    // console.log(this.rptasFlexibilidad)
   }
 
   continuar() {
     if (this.rptasFlexibilidad[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasFlexibilidad);
+      // console.log(this.rptasFlexibilidad);
       if (this.index == this.copys.length - 1) {
         this.app.respuestasDimension(this.rptasFlexibilidad, 8);
         this.app.promedioDimension('Flexibilidad', this.rptasFlexibilidad);
         this.app.navegarA('/questionary/estres');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }

@@ -1,0 +1,54 @@
+<ion-content>
+  <ion-grid>
+    <!--Row con parrafo principal-->
+    <ion-row>
+      <ion-col>
+        <p id="pPrincipal">
+          <b>Información Básica</b>
+        </p>
+      </ion-col>
+    </ion-row>
+    <!--Row con imagen de instrucciones-->
+    <ion-row>
+      <ion-col size="1"> </ion-col>
+      <ion-col id="registro" size="10">
+        <ion-row>
+          <ion-col id="personaje" size="3">
+            <img src="/assets/login/personaje_4.png" alt="" />
+          </ion-col>
+          <ion-col size="9">
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-col size="12">
+                <form [formGroup]="usuario">
+                  <div class="input">
+                    <label for="fcc">Número de identificación:</label><br />
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Ingresa tu número de documento..."
+                      formControlName="documento"
+                      required
+                    />
+                  </div>
+                </form>
+              </ion-col>
+              <ion-col size="12">
+                <ion-button
+                class="buttonAdvanced"
+                type="submit"
+                (click)="search()"
+                [disabled]="!usuario.valid"
+                color="cumbregreen"
+              >
+                Buscar
+              </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="1"> </ion-col>
+    </ion-row>
+    <!--Row con botón-->
+  </ion-grid>
+</ion-content>

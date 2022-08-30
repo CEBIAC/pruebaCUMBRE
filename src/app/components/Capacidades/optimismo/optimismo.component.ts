@@ -24,46 +24,32 @@ export class OptimismoComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasOpt = Array();
   progress = 0.0963;
 
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasOpt[this.index] = parseFloat(event.srcElement.value);
-        console.log(this.rptasOpt);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasOpt[this.index] = parseFloat(event.srcElement.value);
+    // console.log(this.rptasOpt)
   }
 
   continuar() {
     if (this.rptasOpt[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasOpt);
+      // console.log(this.rptasOpt);
       if (this.index == this.copys.length - 1) {
         this.app.respuestasDimension(this.rptasOpt, 2);
         this.app.promedioDimension('Optimismo', this.rptasOpt);
         this.app.navegarA('/questionary/persistencia');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }

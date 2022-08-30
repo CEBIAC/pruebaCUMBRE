@@ -8,14 +8,14 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./planificacion.component.scss'],
 })
 export class PlanificacionComponent implements OnInit {
-
-  copys = ['Si empiezo un proyecto, simplemente actúo sin pensar en los primeros pasos.',
+  copys = [
+    'Si empiezo un proyecto, simplemente actúo sin pensar en los primeros pasos.',
     'Cuento con la capacidad de fragmentar mis objetivos en pequeñas tareas.',
     'La vida del emprendedor está llena de incertidumbre, por eso, emplear esfuerzos haciendo planes es una pérdida de tiempo.',
     'Trato de pensar en varias posibilidades porque sé que pueden darse cosas que no tengo planeadas.',
     'Trato siempre de calcular los tiempos que me toma ejecutar mis actividades.',
-    'Siempre sigo el orden establecido dentro de un plan de acción.'];
-
+    'Siempre sigo el orden establecido dentro de un plan de acción.',
+  ];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -27,26 +27,15 @@ export class PlanificacionComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasPlanificacion = Array();
   progress = 0.6552;
-  constructor(private app: AppComponent) { }
+  constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasPlanificacion[this.index] = parseFloat(
-          event.srcElement.value
-        );
-        //console.log(this.rptasPlanificacion);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasPlanificacion[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasPlanificacion)
   }
 
   continuar() {
@@ -59,15 +48,10 @@ export class PlanificacionComponent implements OnInit {
         this.app.promedioDimension('Planificacion', this.rptasPlanificacion);
         this.app.navegarA('/questionary/evaluacion');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }

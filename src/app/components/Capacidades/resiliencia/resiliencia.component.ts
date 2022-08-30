@@ -8,7 +8,6 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./resiliencia.component.scss'],
 })
 export class ResilienciaComponent implements OnInit {
-
   copys = [
     'Veo las situaciones difíciles como un reto para avanzar.',
     'Pienso que fracasar siempre es parte del proceso.',
@@ -26,24 +25,15 @@ export class ResilienciaComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasResiliencia = Array();
   progress = 0.468;
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasResiliencia[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasResiliencia);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasResiliencia[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasResiliencia)
   }
 
   continuar() {
@@ -56,19 +46,13 @@ export class ResilienciaComponent implements OnInit {
         this.app.promedioDimension('Resiliencia', this.rptasResiliencia);
         this.app.navegarA('/questionary/tolerancia');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
 }

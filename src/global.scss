@@ -69,10 +69,26 @@ ion-progress-bar {
   border-radius: 1.5rem;
 }
 
-.buttonAdvanced{
-    --border-radius: 30px;
-    height: 50px;
-    text-transform: none;
-    letter-spacing: 0.03em;
-    font-size: 3vh;
+.buttonAdvanced {
+  --border-radius: 30px;
+  height: 50px;
+  text-transform: none;
+  letter-spacing: 0.03em;
+  font-size: 3vh;
+}
+
+.loading-pdf {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

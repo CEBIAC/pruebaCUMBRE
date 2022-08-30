@@ -1,3 +1,4 @@
+import { ModalRepoComponent } from './../components/modal-repo/modal-repo.component';
 import { Injectable } from '@angular/core';
 import { User } from './../interfaces/user';
 import { Router } from '@angular/router';
@@ -38,8 +39,17 @@ export class SapiolabService {
     private loading: LoadingController
   ) {}
 
+  verifyQuery(query){
+    if (query['d']) {
+      this.presentLoad('Cargando prueba...');
+      this.infoSapiolab.uidDoc = query['d'];
+      let id = query['d'];
+      this.checkRepo(id);
+    }
+  }
+
   checkQuery(query) {
-    console.log(query);
+    // console.log(query);
     // Condicional para cuando el enlace es para presentar una prueba de cuenta tipo empresa
     if (query['e']) {
       this.presentLoad('Verificando...');
@@ -47,16 +57,11 @@ export class SapiolabService {
       this.infoSapiolab.uidDoc = query['e']; //UID de la cuenta de la emrpesas o persona que genero el enlace
       this.checkAvaibleTest();
 
-      // Condicional para cuando el enlace es para presentar una prueba de cuenta tipo personal
+    // Condicional para cuando el enlace es para presentar una prueba de cuenta tipo personal
     } else if (query['p']) {
       this.presentLoad('Verificando...');
       this.infoSapiolab.tipo = 'personas';
       this.infoSapiolab.uidDoc = query['e'];
-    } else if (query['d']) {
-      this.presentLoad('Cargando prueba...');
-      this.infoSapiolab.uidDoc = query['d'];
-      let id = query['d'];
-      this.checkRepo(id);
     } else {
       alert('El enlace es incorrecto, por favor solicite uno nuevo');
     }
@@ -96,7 +101,7 @@ export class SapiolabService {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, ' => ', doc.data());
+      // console.log(doc.id, ' => ', doc.data());
       search.push(doc.data());
     });
 
@@ -108,9 +113,9 @@ export class SapiolabService {
         sessionStorage.setItem('dateRepo', search[0].fecha);
         this.router.navigate(['/results']);
       } 
-      /*else {
+      else {
         this.presentModalRepos(search);
-      }*/
+      }
     } else {
       alert(
         'No existe una prueba realizada con este número de documento, por favor revisa los datos ingresados'
@@ -121,7 +126,7 @@ export class SapiolabService {
   async saveResults(user: User) {
     let todayDate = new Date().toISOString();
     this.presentLoad('Guardando tus respuestas...');
-    console.log(todayDate);
+    // console.log(todayDate);
     this.infoSapiolab = JSON.parse(sessionStorage.getItem('infoSapiolab'));
     await addDoc(collection(this.db, this.infoSapiolab.coleccion), {
       ...user,
@@ -138,7 +143,6 @@ export class SapiolabService {
             ['pruebasCUNBRE.disponibles']: increment(-1),
           }
         );
-        this.checkRepo(user.documento);
         this.router.navigate(['/results']);
       });
   }
@@ -149,6 +153,17 @@ export class SapiolabService {
       spinner: 'circles',
     });
     this.load.present();
+  }
+
+  async presentModalRepos(repos) {
+    // console.log(repos)
+    const modal = await this.modal.create({
+      component: ModalRepoComponent,
+      cssClass: 'modal-repos',
+      backdropDismiss: false,
+      componentProps: { search: repos },
+    });
+    return await modal.present();
   }
 
 }

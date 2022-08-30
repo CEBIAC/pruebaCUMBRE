@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 import { User } from 'src/app/interfaces/user';
 import { PdfService } from 'src/app/services/pdf.service';
-import { NgxCaptureService } from 'ngx-capture';
 import { tap } from 'rxjs/operators';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import { LoadingController } from '@ionic/angular';
 
 Chart.register(...registerables);
 
@@ -53,7 +53,7 @@ export class Vista1Component implements OnInit, AfterViewInit {
 
   copyGlobal;
   copysCapacidades;
-  copysPlaneacion;
+  copysPlaneacion = [];
   copysHabilidades;
 
   positionCopyCapacidades = 0;
@@ -66,11 +66,13 @@ export class Vista1Component implements OnInit, AfterViewInit {
   bars4: any;
 
   user: User;
+  isPrinting = false;
+  loading;
 
   constructor(
     private router: Router,
     private pdfService: PdfService,
-    private captureService: NgxCaptureService
+    private loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {
@@ -525,42 +527,50 @@ export class Vista1Component implements OnInit, AfterViewInit {
   prevCopy(copy) {
     if (copy == 'capacidades') {
       if (this.positionCopyCapacidades == 0) {
-        this.positionCopyCapacidades = 0;
-      } else if (this.positionCopyCapacidades >= 0) {
-        this.positionCopyCapacidades = this.positionCopyCapacidades - 1;
+        this.positionCopyCapacidades = 11;
+      } else {
+        this.positionCopyCapacidades -= 1;
       }
-    } else if (copy == 'planeacion') {
+    }
+
+    if (copy == 'planeacion') {
       if (this.positionCopyPlaneacion == 0) {
-        this.positionCopyPlaneacion = 0;
-      } else if (this.positionCopyPlaneacion >= 0) {
-        this.positionCopyPlaneacion = this.positionCopyPlaneacion - 1;
+        this.positionCopyPlaneacion = 5;
+      } else {
+        this.positionCopyPlaneacion -= 1;
       }
-    } else if (copy == 'habilidades') {
+    }
+
+    if (copy == 'habilidades') {
       if (this.positionCopyHabilidades == 0) {
-        this.positionCopyHabilidades = 0;
-      } else if (this.positionCopyHabilidades >= 0) {
-        this.positionCopyHabilidades = this.positionCopyHabilidades - 1;
+        this.positionCopyHabilidades = 2;
+      } else {
+        this.positionCopyHabilidades -= 1;
       }
     }
   }
 
   nextCopy(copy) {
     if (copy == 'capacidades') {
-      if (
-        this.positionCopyCapacidades >= 0 &&
-        this.positionCopyCapacidades < 12
-      ) {
+      if (this.positionCopyCapacidades == 11) {
+        this.positionCopyCapacidades = 0;
+      } else {
         this.positionCopyCapacidades += 1;
       }
-    } else if (copy == 'planeacion') {
-      if (this.positionCopyPlaneacion >= 0 && this.positionCopyPlaneacion < 6) {
+    }
+
+    if (copy == 'planeacion') {
+      if (this.positionCopyPlaneacion == 5) {
+        this.positionCopyPlaneacion = 0;
+      } else {
         this.positionCopyPlaneacion += 1;
       }
-    } else if (copy == 'habilidades') {
-      if (
-        this.positionCopyHabilidades >= 0 &&
-        this.positionCopyHabilidades < 3
-      ) {
+    }
+
+    if (copy == 'habilidades') {
+      if (this.positionCopyHabilidades == 2) {
+        this.positionCopyHabilidades = 0;
+      } else {
         this.positionCopyHabilidades += 1;
       }
     }
@@ -966,45 +976,63 @@ export class Vista1Component implements OnInit, AfterViewInit {
     this.router.navigate(['/results/vista2']);
   }
 
+  async showLoading() {
+    this.loading = await this.loadingCtrl.create({
+      message: 'Generando PDF...',
+      spinner: 'circles',
+      cssClass: 'loading-pdf',
+    });
+
+    this.loading.present();
+  }
+
   getScreenshots() {
-    const node = document.getElementById('resultado');
+    this.showLoading().then(() => {
+      document
+        .querySelector('app-vista1')
+        .querySelector('ion-content')
+        .scrollToTop();
+      this.isPrinting = true;
+      setTimeout(() => {
+        const node = document.getElementById('resultado');
 
-    html2canvas(node, {
-      width: node.scrollWidth,
-      height: node.scrollHeight,
-      scrollX: -window.scrollX,
-      scrollY: -window.scrollY,
-      scale: 3,
-      imageTimeout: 1500,
-      backgroundColor: 'rgb(225,225,251)',
-      ignoreElements: (element: any) => {
-        if ('btnResult' == element.id) {
-          return true;
-        }
-      },
-    }).then((canvas: any) => {
-      const imgWidth = 210;
-      const pageHeight = 290;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
+        html2canvas(node, {
+          width: node.scrollWidth,
+          height: node.scrollHeight,
+          scrollX: -window.scrollX,
+          scrollY: -window.scrollY,
+          backgroundColor: 'rgb(225,225,251)',
+          ignoreElements: (element: any) => {
+            if ('btnResult' == element.id) {
+              return true;
+            }
+          },
+        }).then((canvas: any) => {
+          const imgWidth = 210;
+          const pageHeight = 290;
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
+          let heightLeft = imgHeight;
 
-      const doc = new jsPDF('p', 'mm');
-      let position = 0;
-      const pageData = canvas.toDataURL('image/jpeg', 1.0);
+          const doc = new jsPDF('p', 'mm');
+          let position = 0;
+          const pageData = canvas.toDataURL('image/jpeg', 1.0);
 
-      const imgData = encodeURIComponent(pageData);
-      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      doc.setDrawColor(255, 255, 255);
-      heightLeft -= pageHeight;
+          const imgData = encodeURIComponent(pageData);
+          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          doc.setDrawColor(255, 255, 255);
+          heightLeft -= pageHeight;
 
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        doc.addPage();
-        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
+          while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            doc.addPage();
+            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+          }
 
-      doc.save('resultado-test-estilos-de-aprendizaje.pdf');
+          doc.save('Resultados prueba CUMBRE - ' + this.user.nombre + '.pdf');
+          this.loading.dismiss();
+        });
+      }, 1000);
     });
 
     // let base64 = [];

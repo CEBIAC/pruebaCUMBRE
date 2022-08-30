@@ -5,17 +5,22 @@
         <ion-row class="enunciado">
           <ion-col size="12">
             <p id="copyNegociacion">
-              {{copy}}
+              {{ copy }}
             </p>
           </ion-col>
         </ion-row>
         <ion-row class="optionNumber">
-          <ion-col class="option" *ngFor="let opt of opciones" size="12" size-md="2">
+          <ion-col
+            class="option"
+            *ngFor="let opt of opciones"
+            size="12"
+            size-md="2"
+          >
             <button
               id="{{ opt[2] }}"
               value="{{ opt[1] }}"
-              class="ion-text-wrap"
-              (click)="seleccionar($event, opt[1])"
+              [ngClass]="select == opt[2] ? opt[2] + 'act' : ''"
+              (click)="seleccionar($event, opt[2])"
             >
               {{ opt[1] }}
             </button>

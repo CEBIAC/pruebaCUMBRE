@@ -1,8 +1,8 @@
-<ion-content id="reporte" class="ion-no-padding">
+<ion-content id="reporte" class="ion-no-padding" [scrollEvents]="true">
   <div id="resultado">
     <p class="results">{{ name }}</p>
     <p id="date">Fecha: {{ date }}</p>
-    <ion-grid class="ion-padding">
+    <ion-grid class="ion-padding ion-justify-content-center">
       <!--Row con PERFIL GLOBAL-->
       <div class="containerResults ion-padding" id="containerResults">
         <ion-row class="enunciado">
@@ -55,21 +55,21 @@
             </p>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row class="ion-justify-content-center">
           <ion-col size-md="5.5" size="12" class="radar">
             <div class="puntuacion-radar" id="chart2">
               <canvas #barChart></canvas>
             </div>
           </ion-col>
-          <ion-col size-md="6.5" size="12">
+
+          <ion-col [hidden]="isPrinting" size-md="6.5" size="12">
             <ion-row>
               <ion-col size="2">
-                <ion-button fill="clear">
+                <ion-button fill="clear" (click)="prevCopy('capacidades')">
                   <img
                     id="btnSiguiente"
                     src="/assets/results/btnPrev.png"
                     alt=""
-                    (click)="prevCopy('capacidades')"
                   />
                 </ion-button>
               </ion-col>
@@ -82,14 +82,26 @@
                 </p>
               </ion-col>
               <ion-col size="2">
-                <ion-button fill="clear">
+                <ion-button fill="clear" (click)="nextCopy('capacidades')">
                   <img
                     id="btnSiguiente"
                     src="/assets/results/btnNext.png"
                     alt=""
-                    (click)="nextCopy('capacidades')"
                   />
                 </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col [hidden]="!isPrinting" size="12">
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="11" *ngFor="let itemCap of copysCapacidades">
+                <h3 class="subtitle">
+                  {{ itemCap[0] }}
+                </h3>
+                <p class="paragraphCard">
+                  {{ itemCap[1] }}
+                </p>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -109,21 +121,21 @@
             </p>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row class="ion-justify-content-center">
           <ion-col size-md="5.5" size="12" class="radar">
             <div class="puntuacion-radar" id="chart3">
               <canvas #barChart2></canvas>
             </div>
           </ion-col>
-          <ion-col size-md="6.5" size="12">
+
+          <ion-col [hidden]="isPrinting" size-md="6.5" size="12">
             <ion-row>
               <ion-col size="2">
-                <ion-button fill="clear">
+                <ion-button fill="clear" (click)="prevCopy('planeacion')">
                   <img
                     id="btnSiguiente"
                     src="/assets/results/btnPrev.png"
                     alt=""
-                    (click)="prevCopy('planeacion')"
                   />
                 </ion-button>
               </ion-col>
@@ -138,14 +150,26 @@
               >
 
               <ion-col size="2">
-                <ion-button fill="clear">
+                <ion-button fill="clear" (click)="nextCopy('planeacion')">
                   <img
                     id="btnSiguiente"
                     src="/assets/results/btnNext.png"
                     alt=""
-                    (click)="nextCopy('planeacion')"
                   />
                 </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col [hidden]="!isPrinting" size="12">
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="11" *ngFor="let itemPlan of copysPlaneacion">
+                <h3 class="subtitle">
+                  {{ itemPlan[0] }}
+                </h3>
+                <p class="paragraphCard">
+                  {{ itemPlan[1] }}
+                </p>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -165,21 +189,21 @@
             </p>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row class="ion-justify-content-center">
           <ion-col size-md="5.5" size="12" class="radar">
             <div class="puntuacion-radar" id="chart4">
               <canvas #barChart3></canvas>
             </div>
           </ion-col>
-          <ion-col size-md="6.5" size="12">
+
+          <ion-col [hidden]="isPrinting" size-md="6.5" size="12">
             <ion-row>
               <ion-col size="2">
-                <ion-button fill="clear">
+                <ion-button fill="clear" (click)="prevCopy('habilidades')">
                   <img
                     id="btnSiguiente"
                     src="/assets/results/btnPrev.png"
                     alt=""
-                    (click)="prevCopy('habilidades')"
                   />
                 </ion-button>
               </ion-col>
@@ -193,14 +217,26 @@
               >
 
               <ion-col size="2">
-                <ion-button fill="clear">
+                <ion-button fill="clear" (click)="nextCopy('habilidades')">
                   <img
                     id="btnSiguiente"
                     src="/assets/results/btnNext.png"
                     alt=""
-                    (click)="nextCopy('habilidades')"
                   />
                 </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col [hidden]="!isPrinting" size="12">
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="11" *ngFor="let itemHab of copysHabilidades">
+                <h3 class="subtitle">
+                  {{ itemHab[0] }}
+                </h3>
+                <p class="paragraphCard">
+                  {{ itemHab[1] }}
+                </p>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -212,6 +248,7 @@
           <ion-button
             (click)="getScreenshots()"
             color="cumbrepurple"
+            id="btnResult"
             class="buttonAdvanced"
             >Descargar PDF
           </ion-button>

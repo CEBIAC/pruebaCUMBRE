@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { VerifyGuard } from './guards/verify.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: '',
@@ -13,21 +14,31 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'repository',
+    loadChildren: () =>
+      import('./pages/repository/repository.module').then(
+        (m) => m.RepositoryPageModule
+      ),
+  },
+  {
     path: 'instructions',
     loadChildren: () =>
       import('./pages/instructions/instructions.module').then(
         (m) => m.InstructionsPageModule
       ),
+    canLoad: [VerifyGuard],
   },
   {
-    path: 'results',
+    path: 'login',
     loadChildren: () =>
-      import('./pages/results/results.module').then((m) => m.ResultsPageModule),
+      import('./pages/login/login.module').then((m) => m.LoginPageModule),
+    canLoad: [VerifyGuard],
   },
   {
     path: 'terms',
     loadChildren: () =>
       import('./pages/terms/terms.module').then((m) => m.TermsPageModule),
+    canLoad: [VerifyGuard],
   },
   {
     path: 'questionary',
@@ -35,24 +46,19 @@ const routes: Routes = [
       import('./pages/questionary/questionary.module').then(
         (m) => m.QuestionaryPageModule
       ),
+    canLoad: [VerifyGuard],
   },
   {
-    path: 'login',
+    path: 'results',
     loadChildren: () =>
-      import('./pages/login/login.module').then((m) => m.LoginPageModule),
-  },
-  {
-    path: 'inst-resuts',
-    loadChildren: () =>
-      import('./pages/inst-resuts/inst-resuts.module').then(
-        (m) => m.InstResutsPageModule
-      ),
+      import('./pages/results/results.module').then((m) => m.ResultsPageModule),
+    canLoad: [VerifyGuard],
   },
   {
     path: '**',
     redirectTo: 'home',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

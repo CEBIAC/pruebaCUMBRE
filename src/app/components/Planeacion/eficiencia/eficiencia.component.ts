@@ -8,11 +8,12 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./eficiencia.component.scss'],
 })
 export class EficienciaComponent implements OnInit {
-
-  copys = ['Me gusta aplicar los mejores medios posibles con el fin de ahorrar tiempo en la obtención resultados.',
+  copys = [
+    'Me gusta aplicar los mejores medios posibles con el fin de ahorrar tiempo en la obtención resultados.',
     'En todo proceso de trabajo prefiero asegurarme que estoy invirtiendo la mínima cantidad de tiempo y recursos.',
     'Los resultados de calidad son importantes siempre y cuando se reduzca en lo posible los recursos y tiempos de entrega.',
-    'La calidad minuciosa de los resultados pasa a un segundo plano cuando éstos se pueden alcanzar rápida y económicamente.'];
+    'La calidad minuciosa de los resultados pasa a un segundo plano cuando éstos se pueden alcanzar rápida y económicamente.',
+  ];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -24,26 +25,15 @@ export class EficienciaComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasEficiencia = Array();
   progress = 0.7722;
-  constructor(private app: AppComponent) { }
+  constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasEficiencia[this.index] = parseFloat(
-          event.srcElement.value
-        );
-        //console.log(this.rptasEficiencia);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasEficiencia[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasEficiencia)
   }
 
   continuar() {
@@ -56,20 +46,13 @@ export class EficienciaComponent implements OnInit {
         this.app.promedioDimension('Eficiencia', this.rptasEficiencia);
         this.app.navegarA('/questionary/eficacia');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
-
 }

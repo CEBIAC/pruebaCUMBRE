@@ -8,11 +8,12 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./trabajo-equipo.component.scss'],
 })
 export class TrabajoEquipoComponent implements OnInit {
-
-  copys = ['En un equipo es importante que se aporten ideas distintas y crear algo nuevo',
+  copys = [
+    'En un equipo es importante que se aporten ideas distintas y crear algo nuevo',
     'La gran ventaja de los equipos es el apoyo mutuo',
     'Prefiero tener logros colectivos o como líder de un equipo, que logros netamente individuales',
-    'Siempre puedo aprender de mis compañeros'];
+    'Siempre puedo aprender de mis compañeros',
+  ];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -24,26 +25,15 @@ export class TrabajoEquipoComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasEquipo = Array();
   progress = 0.9126;
-  constructor(private app: AppComponent) { }
+  constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasEquipo[this.index] = parseFloat(
-          event.srcElement.value
-        );
-        //console.log(this.rptasEquipo);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasEquipo[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasEquipo)
   }
 
   continuar() {
@@ -56,19 +46,13 @@ export class TrabajoEquipoComponent implements OnInit {
         this.app.promedioDimension('Trabajo en equipo', this.rptasEquipo);
         this.app.navegarA('/questionary/negociacion');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
 }

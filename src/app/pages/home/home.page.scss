@@ -1,9 +1,8 @@
 ion-content {
-  --background: url("../../assets/home/Fondo.png") no-repeat center/cover fixed;
-  background-color: #18243E;
+  --background: url("/assets/home/Fondo.png") no-repeat center/cover fixed;
+  background-color: #18243e;
   z-index: 0;
 }
-
 
 .personajes {
   height: 30vh;
@@ -14,8 +13,8 @@ ion-col {
 }
 
 p {
-  font-family: 'Quicksand', sans-serif;
-  color: #FFFF;
+  font-family: "Quicksand", sans-serif;
+  color: #ffff;
   font-size: 2.2vh;
 }
 

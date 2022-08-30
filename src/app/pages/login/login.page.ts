@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from './../../interfaces/user';
 //import { first } from 'rxjs/operators';
@@ -15,7 +12,6 @@ import { User } from './../../interfaces/user';
 export class LoginPage implements OnInit {
   stateSelect = false;
   stateDefaultSelect = false;
-
   cc: any;
   usuario = this.formBuilder.group({
     nombre: [
@@ -28,7 +24,7 @@ export class LoginPage implements OnInit {
     ],
     documento: [
       '',
-      [Validators.min(1000), Validators.required, Validators.pattern('[0-9]+')],
+      [Validators.min(20), Validators.required, Validators.pattern('[0-9]+')],
     ],
     email: ['', [Validators.email, Validators.required]],
   });
@@ -40,9 +36,9 @@ export class LoginPage implements OnInit {
     respuestas: '',
     resultados: '',
   };
-  constructor(private formBuilder: FormBuilder, public router: Router) { }
+  constructor(private formBuilder: FormBuilder, public router: Router) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   async guardarDatos(login: any) {
     this.user = {
@@ -55,7 +51,7 @@ export class LoginPage implements OnInit {
     };
     sessionStorage.setItem('user', JSON.stringify(this.user));
     this.router.navigateByUrl('/instructions');
-    
+
     /*sessionStorage.setItem('Cedula', this.user.documento);
     var userId = false;
     const user = this.db.getUserData(String(datos.Cedula));

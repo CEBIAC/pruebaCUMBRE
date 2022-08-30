@@ -25,47 +25,31 @@ export class PersistenciaComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasPersistencia = Array();
   progress = 0.14;
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasPersistencia[this.index] = parseFloat(
-          event.srcElement.value
-        );
-        console.log(this.rptasPersistencia);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasPersistencia[this.index] = parseFloat(event.srcElement.value);
+    // console.log(this.rptasPersistencia);
   }
 
   continuar() {
     if (this.rptasPersistencia[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasPersistencia);
+      // console.log(this.rptasPersistencia);
       if (this.index == this.copys.length - 1) {
         this.app.respuestasDimension(this.rptasPersistencia, 3);
         this.app.promedioDimension('Persistencia', this.rptasPersistencia);
         this.app.navegarA('/questionary/riesgo');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }

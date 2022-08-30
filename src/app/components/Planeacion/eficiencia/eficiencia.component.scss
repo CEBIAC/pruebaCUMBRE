@@ -85,6 +85,23 @@ ion-grid {
             transition: all 0.2s ease-in-out;
           }
 
+          #opt1.opt1act,
+          #opt2.opt2act {
+            color: rgb(255, 255, 255);
+            background-color: #e42320;
+          }
+
+          #opt3.opt3act {
+            color: rgb(255, 255, 255);
+            background-color: #6f6f6e;
+          }
+
+          #opt4.opt4act,
+          #opt5.opt5act {
+            color: rgb(255, 255, 255);
+            background-color: #69b32d;
+          }
+
           #opt1,
           #opt2 {
             border: 2px solid #e42320;

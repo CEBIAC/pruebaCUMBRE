@@ -84,6 +84,29 @@ ion-grid {
             transition: all 0.2s ease-in-out;
           }
 
+          #opt1.opt1act,
+          #opt2.opt2act {
+            color: rgb(255, 255, 255);
+            width: 87px;
+            height: 89px;
+            background: url("/assets/heptagon/P2.png") -10px -10px;
+          }
+
+          #opt3.opt3act {
+            color: rgb(255, 255, 255);
+            width: 87px;
+            height: 89px;
+            background: url("/assets/heptagon/P22.png") -10px -10px;
+          }
+
+          #opt4.opt4act,
+          #opt5.opt5act {
+            color: rgb(255, 255, 255);
+            width: 87px;
+            height: 89px;
+            background: url("/assets/heptagon/P32.png") -10px -10px;
+          }
+
           #opt1,
           #opt2 {
             width: 87px;

@@ -82,6 +82,31 @@ ion-grid {
             transition: all 0.2s ease-in-out;
           }
 
+          #opt1.opt1act,
+          #opt2.opt2act {
+            width: 96px;
+            height: 92px;
+
+            background: url("/assets/octagon/O2.png") -5px -10px;
+            color: #ffff;
+          }
+
+          #opt3.opt3act {
+            width: 96px;
+            height: 92px;
+            background: url("/assets/octagon/O22.png") -5px -10px;
+            color: #ffff;
+          }
+
+          #opt4.opt4act,
+          #opt5.opt5act {
+            width: 96px;
+            height: 92px;
+
+            background: url("/assets/octagon/O32.png") -5px -10px;
+            color: #ffff;
+          }
+
           #opt1,
           #opt2 {
             width: 96px;

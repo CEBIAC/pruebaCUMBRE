@@ -7,7 +7,6 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./propension-riesgo.component.scss'],
 })
 export class PropensionRiesgoComponent implements OnInit {
-
   copys = [
     'Me atemoriza emprender un negocio porque podría perder dinero.',
     'El contexto empresarial es muy arriesgado para emprender un negocio.',
@@ -25,50 +24,35 @@ export class PropensionRiesgoComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasRiesgo = Array();
   progress = 0.187;
 
   constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasRiesgo[this.index] = parseFloat(event.srcElement.value);
-        //console.log(this.rptasRiesgo);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasRiesgo[this.index] = parseFloat(event.srcElement.value);
+    // console.log(this.rptasRiesgo)
   }
 
   continuar() {
     if (this.rptasRiesgo[this.index] == undefined) {
       alert('Selecciona una opción para continuar');
     } else {
-      //console.log(this.rptasRiesgo);
+      // console.log(this.rptasRiesgo);
       if (this.index == this.copys.length - 1) {
         this.app.respuestasDimension(this.rptasRiesgo, 4);
         this.app.promedioDimension('Propension al Riesgo', this.rptasRiesgo);
         this.app.navegarA('/questionary/autonomia');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
 }

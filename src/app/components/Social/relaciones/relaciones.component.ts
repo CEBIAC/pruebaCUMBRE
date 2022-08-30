@@ -8,11 +8,12 @@ import { QuestionaryPage } from 'src/app/pages/questionary/questionary.page';
   styleUrls: ['./relaciones.component.scss'],
 })
 export class RelacionesComponent implements OnInit {
-
-  copys = ['Siento que me privo de oportunidades porque soy muy tímido.',
+  copys = [
+    'Siento que me privo de oportunidades porque soy muy tímido.',
     'Entre más enriquezca mi red de contactos con alianzas estratégicas, mayor será el potencial de sacar adelante mi proyecto.',
     'Recurro a información de prensa e internet para encontrar y aprovechar espacios donde pueda encontrar aliados, clientes o colaboradores.',
-    'Se me dificulta relacionarme con personas que no conozco, prefiero establecer relaciones empresariales con conocidos.'];
+    'Se me dificulta relacionarme con personas que no conozco, prefiero establecer relaciones empresariales con conocidos.',
+  ];
 
   opciones = [
     ['Totalmente en desacuerdo', '1', 'opt1'],
@@ -24,26 +25,15 @@ export class RelacionesComponent implements OnInit {
 
   index = 0;
   copy = this.copys[this.index];
+  select;
   rptasRelaciones = Array();
   progress = 0.8658;
-  constructor(private app: AppComponent) { }
+  constructor(private app: AppComponent) {}
 
-  seleccionar(event) {
-    this.opciones.forEach((element, index) => {
-      let elmnt: HTMLElement = document.getElementById(element[2]);
-      elmnt.className = '';
-
-      if (index == this.opciones.length - 1) {
-        const select: HTMLElement = document.getElementById(
-          event.srcElement.id
-        );
-        select.className = 'actived';
-        this.rptasRelaciones[this.index] = parseFloat(
-          event.srcElement.value
-        );
-        //console.log(this.rptasRelaciones);
-      }
-    });
+  seleccionar(event, opt) {
+    this.select = opt;
+    this.rptasRelaciones[this.index] = parseFloat(event.srcElement.value);
+    //console.log(this.rptasRelaciones)
   }
 
   continuar() {
@@ -56,19 +46,13 @@ export class RelacionesComponent implements OnInit {
         this.app.promedioDimension('Relaciones', this.rptasRelaciones);
         this.app.navegarA('/questionary/equipo');
       } else {
-        this.opciones.forEach((element, index) => {
-          let elmnt: HTMLElement = document.getElementById(element[2]);
-          elmnt.className = '';
-          if (index == this.opciones.length - 1) {
-            this.index++;
-            this.copy = this.copys[this.index];
-            this.progress = this.progress + 0.0117;
-          }
-        });
+        this.select = '';
+        this.index++;
+        this.copy = this.copys[this.index];
+        this.progress = this.progress + 0.0117;
       }
     }
   }
 
   ngOnInit() {}
-
 }

@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col>
+        <h1 class="h1Top">Tu repositorio</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row class="repos ion-justify-content-center">
+      <ion-col size="11" class="ion-padding ion-text-center">
+        De las siguientes pruebas que has realizado, selecciona la que desesa
+        ver:
+      </ion-col>
+      <ion-col size="11">
+        <ion-row *ngFor="let repo of repos; let i = index" class="ion-padding">
+          <ion-col size="11">
+            <p>
+              Prueba CUMBRE presentada en: <b>{{ repo.fecha }}</b>
+            </p>
+          </ion-col>
+          <ion-col size="1" class="ion-text-center">
+            <ion-icon
+              color="success"
+              name="enter-outline"
+              (click)="goToResult(i)"
+            ></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
