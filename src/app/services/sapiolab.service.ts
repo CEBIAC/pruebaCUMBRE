@@ -21,9 +21,8 @@ import {
   ModalController,
 } from '@ionic/angular';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class SapiolabService {
   load;
   infoSapiolab = {
@@ -39,12 +38,12 @@ export class SapiolabService {
     private loading: LoadingController
   ) {}
 
-  verifyQuery(query){
+  verifyQuery(query) {
     if (query['d']) {
       this.presentLoad('Cargando prueba...');
       this.infoSapiolab.uidDoc = query['d'];
       let id = query['d'];
-      this.checkRepo(id);
+      this.checkRepoFromSapiolab(id);
     }
   }
 
@@ -57,7 +56,7 @@ export class SapiolabService {
       this.infoSapiolab.uidDoc = query['e']; //UID de la cuenta de la emrpesas o persona que genero el enlace
       this.checkAvaibleTest();
 
-    // Condicional para cuando el enlace es para presentar una prueba de cuenta tipo personal
+      // Condicional para cuando el enlace es para presentar una prueba de cuenta tipo personal
     } else if (query['p']) {
       this.presentLoad('Verificando...');
       this.infoSapiolab.tipo = 'personas';
@@ -107,15 +106,33 @@ export class SapiolabService {
 
     if (search.length != 0) {
       if (search.length == 1) {
-        sessionStorage.setItem('user', JSON.stringify(search[0]))
-        sessionStorage.setItem('resultadosRepo', search[0].resultados)
+        sessionStorage.setItem('user', JSON.stringify(search[0]));
+        sessionStorage.setItem('resultadosRepo', search[0].resultados);
         sessionStorage.setItem('nameRepo', search[0].nombre);
         sessionStorage.setItem('dateRepo', search[0].fecha);
         this.router.navigate(['/results']);
-      } 
-      else {
+      } else {
         this.presentModalRepos(search);
       }
+    } else {
+      alert(
+        'No existe una prueba realizada con este número de documento, por favor revisa los datos ingresados'
+      );
+    }
+  }
+
+  async checkRepoFromSapiolab(id) {
+    const docRef = doc(this.db, 'pruebasCUMBRE', id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      let data = docSnap.data();
+
+      sessionStorage.setItem('user', JSON.stringify(data));
+      sessionStorage.setItem('resultadosRepo', data.resultados);
+      sessionStorage.setItem('nameRepo', data.nombre);
+      sessionStorage.setItem('dateRepo', data.fecha);
+      this.router.navigate(['/results']);
     } else {
       alert(
         'No existe una prueba realizada con este número de documento, por favor revisa los datos ingresados'
@@ -165,5 +182,4 @@ export class SapiolabService {
     });
     return await modal.present();
   }
-
 }
