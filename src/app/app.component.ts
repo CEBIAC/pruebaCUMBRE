@@ -9,7 +9,7 @@ import { User } from './interfaces/user';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  respuestas = Array(75).fill(0);
+  respuestas = Array(86).fill(0);
   respuestasDim: Array<any> = [];
   objProms = {
     Autoeficacia: '0',
@@ -71,7 +71,7 @@ export class AppComponent {
       this.objProms.Capacidades = (capacidades.reduce(reducer) / 12).toFixed(2);
       this.objProms.Planeacion = (planeacion.reduce(reducer) / 6).toFixed(2);
       this.objProms.Social = (social.reduce(reducer) / 3).toFixed(2);
-      this.objProms.Global = (this.respuestas.reduce(reducer) / 22).toFixed(2);
+      this.objProms.Global = (this.respuestas.reduce(reducer) / 86).toFixed(2);
       sessionStorage.setItem('promedios', JSON.stringify(this.objProms));
       this.saveResults(this.respuestas, this.objProms);
     }
