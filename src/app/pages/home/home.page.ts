@@ -12,10 +12,10 @@ export class HomePage implements OnInit {
     private sapiolab: SapiolabService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    // sessionStorage.clear();
-  }
+  ) {}
+
   ngOnInit() {
+    sessionStorage.clear();
     this.verificarURL();
   }
 
@@ -33,11 +33,9 @@ export class HomePage implements OnInit {
     this.route.queryParams
       .subscribe((params) => {
         const query = params;
-        // console.log(query);
         this.sapiolab.checkQuery(query);
       })
       .unsubscribe();
-    //this.router.navigateByUrl('/terms');
   }
 
   //Metodo para enviar a results

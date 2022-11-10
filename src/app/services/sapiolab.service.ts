@@ -133,10 +133,12 @@ export class SapiolabService {
       sessionStorage.setItem('nameRepo', data.nombre);
       sessionStorage.setItem('dateRepo', data.fecha);
       this.router.navigate(['/results']);
+      this.load.dismiss()
     } else {
       alert(
         'No existe una prueba realizada con este número de documento, por favor revisa los datos ingresados'
       );
+      this.load.dismiss()
     }
   }
 
